@@ -1,0 +1,439 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Test">
+  <select id="select_list">
+       select  
+        c.store_name,
+        b.menu_name,
+        a.order_cnt,
+        sum(a.order_cnt*b.menu_price),
+        substr(a.in_date,1,8),
+        a.in_user_id,
+        a.pay_flag
+    from 
+       order_info a, menu b, store_info c
+    where 
+       a.menu_seq=b.menu_seq
+    and 
+       b.store_seq= c.store_seq
+    and 
+       a.in_user_id=:1
+    group by 
+       c.store_name,b.menu_name,a.order_cnt,substr(a.in_date,1,8),a.in_user_id, a.pay_flag
+     order by 5 desc
+  
+   </select>
+   
+   <select id="select_recomm">
+	select 
+		distinct menu_seq
+	from
+		(select menu_seq from order_info where in_user_id = :1 order by in_date desc)
+	where 
+		<![CDATA[rownum<=9]]>
+	</select>
+   
+   	<select id="select_recomm_not">
+	select 
+		menu_seq
+	from (select menu_seq from order_info where in_user_id = :1 order by in_date desc)
+	where 
+		<![CDATA[rownum<=9]]>
+</select>
+   
+   <select id="select_pay_flag">
+     select order_seq,
+		   pay_flag,
+		   m.menu_seq,
+		   store_seq,
+		   o.in_date,
+           u.room_seq
+	from 
+		menu m 
+		right outer join 
+		order_info o
+	on(m.menu_seq = o.menu_seq)
+                 left outer join
+                 user_info u
+             on(u.user_id = o.in_user_id)
+                 
+	where substr(o.in_date,1,8) = to_char(sysdate, 'YYYYMMDD')
+	and
+	u.room_seq = :1
+	and
+	m.store_seq = :2
+  
+   </select>
+   
+<select id="select_recomm_menu">
+   select menu_seq
+      from
+      (
+      select menu_seq, in_date
+      from recom
+      where user_id=:1
+      order by in_date desc
+      )
+      where rownum = 1
+    
+  
+   </select>
+   
+   
+
+   <select id="select_sms">
+	select 
+		m.store_seq,
+		i.room_seq,
+		m.menu_name,
+	    nvl(sum(o.order_cnt),0) order_cnt,
+	    nvl(sum(o.order_cnt*m.menu_price),0) order_sum
+	from 
+		order_info o, menu m, user_info i
+	where 
+		o.menu_seq = m.menu_seq
+	and 
+		o.in_user_id = i.in_user_id
+	and 
+		m.store_seq='1'
+	and 
+		i.room_seq='401'
+	and 
+		substr(o.in_date,1,8)=to_char(sysdate,'yyyymmdd')
+	and 
+		o.pay_flag='n'
+	group by 
+		m.store_seq,i.room_seq,m.menu_name
+   </select>
+   
+   
+
+   
+   
+   
+   
+   <update id="insert">
+      insert into starget 
+      (
+         survey_id, 
+         st_mobile, 
+         complete_yn,  
+         in_date, 
+         in_user_id, 
+         up_date, 
+         up_user_id
+      ) 
+      values
+      (
+         :1, 
+         :2, 
+         :3, 
+         to_char(sysdate, 'YYYYMMDD.HH24MISS'), 
+         :4, 
+         to_char(sysdate, 'YYYYMMDD.HH24MISS'), 
+         :5
+      )
+   </update>
+   
+
+   
+   <update id="update">
+      update 
+         starget 
+      set 
+         complete_yn         =:1,  
+         up_date            = to_char(sysdate, 'YYYYMMDD.HH24MISS'), 
+         up_user_id         =:2
+      where 
+         survey_id=:3 and st_mobile=:4
+   </update>
+   
+   
+   
+   <update id="update_flag">
+         update
+			(
+				select order_seq,
+					   pay_flag,
+					   m.menu_seq,
+					   store_seq,
+					   o.in_date,
+                       u.room_seq
+				from 
+					menu m 
+					right outer join 
+					order_info o
+				on(m.menu_seq = o.menu_seq)
+                    left outer join
+                    user_info u
+                on(u.user_id = o.in_user_id)
+                    
+				where substr(o.in_date,1,8) = to_char(sysdate, 'YYYYMMDD')
+				and
+				u.room_seq = :1)
+			set
+			pay_flag='y'
+			where
+			store_seq=:2
+   </update>
+   
+   
+   <update id="delete">
+      delete from starget where survey_id = :3 and st_mobile= :4
+   </update>
+   
+   
+   
+   
+   
+   <select id="select_graph">
+      
+      select rr.room_seq as room, nvl(tbl.cnt,0) as cnt, nvl(tbl.in_date, (select to_char(sysdate, 'YYYYMMDD') from dual)) as indate
+      from room rr left outer join (select 
+                                    r.room_seq as room , nvl(sum(o.order_cnt),0) as cnt, m.store_seq as storeseq, substr(o.in_date,1,8) as in_date
+                                    from user_info u inner join order_info o
+                                    on (u.in_user_id = o.in_user_id and substr(o.in_date,1,8) = (select to_char(sysdate, 'YYYYMMDD') from dual))
+                                    right outer join room r
+                                    on u.room_seq = r.room_seq
+                                    left outer join menu m
+                                    on o.menu_seq = m.menu_seq
+                                    where m.store_seq =:0
+                                    group by r.room_seq, m.store_seq, substr(o.in_date,1,8)
+                                    order by 1) tbl
+      on rr.room_seq = tbl.room
+      where rr.del_flag = 'n'
+      order by 1
+      
+      
+      
+      
+   </select>
+   
+   
+   <select id="admin_select">
+      
+   select  substr(order_info.in_date,1,4)||'-'||substr(order_info.in_date,5,2)||'-'||substr(order_info.in_date,7,2) as in_date,
+           user_info.user_name,
+           user_info.user_id,
+           store_name,
+           menu_name,
+           order_info.order_cnt * menu.menu_price as sum
+    from user_info
+        inner join order_info on user_info.user_id = order_info.in_user_id
+        inner join menu using(menu_seq)
+        inner join store_info using(store_seq)
+    where :v_user_id is null
+        or user_info.user_id = :v_user_id
+    order by 
+       ORDER_INFO.IN_DATE desc
+   </select>
+   
+   <select id="admin_select_name">
+      
+  select  substr(order_info.in_date,1,4)||'-'||substr(order_info.in_date,5,2)||'-'||substr(order_info.in_date,7,2) as in_date,
+           user_info.user_name,
+           user_info.user_id,
+           store_name,
+           menu_name,
+           order_info.order_cnt * menu.menu_price as sum
+    from user_info
+        inner join order_info on user_info.user_id = order_info.in_user_id
+        inner join menu using(menu_seq)
+        inner join store_info using(store_seq)
+    where :v_user_name  is null
+        or user_info.user_name  like '%'||:v_user_name||'%'
+    order by 
+       ORDER_INFO.IN_DATE desc
+   </select>
+   
+   <select id="admin_select_date">
+   SELECT  substr(ORDER_INFO.IN_DATE,1,4)||'-'||substr(ORDER_INFO.IN_DATE,5,2)||'-'||substr(ORDER_INFO.IN_DATE,7,2) as in_date,
+        USER_INFO.USER_NAME,
+        USER_INFO.USER_ID,
+        STORE_NAME,
+        MENU_NAME,
+        ORDER_INFO.order_cnt * MENU.menu_price AS SUM
+    FROM USER_INFO
+        INNER JOIN ORDER_INFO ON USER_INFO.USER_ID = ORDER_INFO.IN_USER_ID
+        INNER JOIN MENU USING(MENU_SEQ)
+        INNER JOIN STORE_INFO USING(STORE_SEQ)
+    WHERE :V_IN_DATE is null
+        or SUBSTR(ORDER_INFO.IN_DATE,1,8) = SUBSTR(:V_IN_DATE,1,8)
+    order by 
+       ORDER_INFO.IN_DATE desc
+   </select>
+   
+   <select id="select_store">
+   
+   select store_seq 
+   from store_info
+   where del_flag = 'n'
+   order by store_seq
+   
+   </select>
+   
+   
+   <select id="select_storename">
+   
+   select store_name, store_seq
+   from store_info
+   where del_flag = 'n'
+   order by store_seq
+   
+   </select>
+   
+ <select id="banjang_select">
+
+   
+   
+   <!-- 고쳤음 -->
+   
+    select  s.store_seq,s.store_name,m.menu_name, m.menu_price, sum(o.order_cnt),c.store_code, m.menu_seq, u.room_seq,substr(o.in_date,1,8)
+   from order_info o inner join user_info u
+   on (o.in_user_id = u.user_id
+   and u.room_seq = ( select room_seq from user_info where in_user_id = :1 )
+   and substr(o.in_date,1,8) = (select to_char(sysdate, 'YYYYMMDD') from dual) )
+   left outer join menu m
+   on (o.menu_seq = m.menu_seq)
+   left outer join store_info s
+   on (s.store_seq = m.store_seq)
+   left outer join store_code c
+    on ( s.store_seq = c.store_seq)
+   where s.store_seq = :2
+   group by s.store_seq,s.store_name, m.menu_name, m.menu_price,c.store_code,m.menu_seq,u.room_seq,substr(o.in_date,1,8)
+   
+   
+   
+
+   
+   
+   </select>
+   
+   
+ <select id="sms_list">
+	select 
+		m.store_seq,
+		i.room_seq,
+		m.menu_name,
+        s.store_tel,
+	    nvl(sum(o.order_cnt),0) order_cnt,
+	    nvl(sum(o.order_cnt*m.menu_price),0) order_sum
+	from 
+		order_info o, menu m, user_info i,store_info s
+	where 
+		o.menu_seq = m.menu_seq
+	and 
+		o.in_user_id = i.in_user_id
+	and 
+		m.store_seq = s.store_seq
+	and 
+		m.store_seq=:1
+	and 
+		i.room_seq=:2
+	and 
+		substr(o.in_date,1,8)=to_char(sysdate,'yyyymmdd')
+	and 
+		o.pay_flag='n'
+	group by 
+		m.store_seq,i.room_seq,m.menu_name,s.store_tel
+   </select>
+   
+   
+   
+   
+   
+   
+   <select id="select_menulist">
+   
+   select menu_name, menu_price, menu_seq
+	from menu
+	where store_seq =:1
+   
+   </select>
+   
+   
+   
+   
+   
+   <select id="select_store_detail">
+   select tbl.mname, tbl.sum, (select store_name from store_info where store_seq = sseq) as sname, rownum
+	from   (select sum(order_cnt) as sum, menu_seq as mseq, menu_name as mname, store_seq as sseq
+	        from order_info inner join menu
+	        using (menu_seq)
+	        where menu.store_seq =: 1
+	        group by menu_seq, menu_name, store_seq
+	        order by 1 desc) tbl
+	where <![CDATA[rownum <=10]]>
+   
+   </select>
+   
+   <select id="order_menu">
+   select menu_seq, menu_name, menu_price
+	from menu 
+	where store_seq =: 1 
+	and del_flag = 'n'
+   
+   
+   </select>
+   
+   <update id="myorderinsert">
+		insert into order_info
+		(order_seq, menu_seq, order_cnt, pay_flag, in_date, in_user_id)
+		values
+		((SELECT NVL(MAX(order_seq),0)+1 FROM order_info),
+		 :1, :2, 'n', to_char(sysdate, 'YYYYMMDD.HH24MISS'), :3)
+   
+   
+   </update>
+   
+   
+    <select id="order_person">
+
+   
+      
+   select 
+       tt.user_id,
+       (
+       select user_name
+       from user_info uu
+       where
+        uu.user_id = tt.user_id
+       ) user_name
+   from
+   (
+       select 
+           t.user_id
+       from 
+       (
+       select 
+       o.menu_seq,
+       o.order_cnt,
+       o.pay_flag,
+       u.user_id,
+       u.ROOM_SEQ,
+       u.user_name
+       from 
+       order_info o,user_info u
+       where
+           o.IN_USER_ID = u.user_id
+           and o.MENU_SEQ = :1
+           and u.ROOM_SEQ = :2
+           and substr(o.in_date,1,8) = :3
+       ) t   
+       group by t.user_id
+   ) tt
+   
+   
+   
+
+   
+   
+   </select>
+   
+   
+   
+   
+   
+   
+</mapper>

@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Test">
+	<select id="select_">
+	SELECT
+		c.COMM_SEQ,
+		c.COMM_TITLE,
+		c.COMM_CONTENT,
+		c.COMM_HIT,
+		c.DEL_FLAG,
+		c.ATTACH_FILE,
+		c.ATTACH_PATH,
+		c.IN_DATE,
+		c.IN_USER_ID,
+		c.UP_DATE,
+		c.UP_USER_ID,
+        (
+		SELECT 
+			COUNT(*) as cnt
+	    FROM
+			REPLY 
+	    WHERE 
+			COMM_SEQ=:1
+		)
+		
+		
+	FROM
+		COMM c, reply r  
+	WHERE 
+    	:v_search
+	IS 
+   	 	NULL 
+	OR 
+    	c.COMM_TITLE LIKE '%'||:v_search||'%'
+    and c.comm_seq =r.comm_seq
+	ORDER BY 
+       	c.IN_DATE 
+	DESC
+	</select>
+	
+	<select id="select">
+	SELECT 	
+			C.COMM_SEQ,
+			C.COMM_TITLE,
+			C.COMM_CONTENT,
+			C.COMM_HIT,
+			C.DEL_FLAG,
+			C.ATTACH_FILE,
+			C.ATTACH_PATH,
+			C.IN_DATE,
+			C.IN_USER_ID,
+			C.UP_DATE,
+			C.UP_USER_ID, 
+			NVL(TBL.REPLY,0) AS CNT,
+            NVL(goodTBL.good_cnt,0) AS good_CNT
+            
+	FROM 
+		COMM C LEFT OUTER JOIN 
+			(
+			SELECT 
+				COMM_SEQ, 
+				COUNT(*) AS REPLY 
+	        FROM 
+	        	REPLY
+	        GROUP BY 
+	        	COMM_SEQ
+	        )
+			TBL
+		ON C.COMM_SEQ =  TBL.COMM_SEQ
+    left outer join (select comm_seq, count(*) as good_cnt
+                    from good
+                    group by comm_seq) goodtbl
+        on c.comm_seq = goodtbl.comm_seq
+	WHERE 
+	    	:V_SEARCH
+		IS 
+	   	 	NULL 
+		OR 
+	    	C.COMM_TITLE LIKE '%'||:V_SEARCH||'%'
+		ORDER BY 
+	       	C.IN_DATE 
+		DESC
+	</select>
+
+
+ <select id="select_detail">
+   SELECT
+      COMM_SEQ,
+      COMM_TITLE,
+      COMM_CONTENT,
+      COMM_HIT,
+      DEL_FLAG,
+      ATTACH_FILE,
+      ATTACH_PATH,
+      TO_CHAR(TO_DATE(SUBSTR(IN_DATE,1,8)),'YYYY-MM-DD'),
+      IN_USER_ID,
+      UP_DATE,
+      UP_USER_ID,
+      (
+        SELECT
+              COUNT(comm_seq)
+        FROM
+              reply
+        WHERE
+            comm_seq = :1
+        ) as cnt,
+        (select count(*) from good where comm_seq = :2 and user_id = :3) as ccnt,
+        (select count(*) from good where comm_seq =:4) as totalcnt
+   FROM
+      COMM 
+   WHERE
+      COMM_SEQ = :5
+   </select>
+   
+   
+	<update id="update_hit">
+	UPDATE 
+   		COMM
+	SET 
+   		COMM_HIT = COMM_HIT+1
+	WHERE 
+   		COMM_SEQ = :1
+	</update>
+
+
+
+	<update id="insert">
+      INSERT INTO COMM 
+      (
+         COMM_SEQ, 
+         COMM_TITLE, 
+         COMM_CONTENT, 
+         COMM_HIT, 
+         DEL_FLAG, 
+         ATTACH_FILE, 
+         ATTACH_PATH, 
+         IN_DATE, 
+         IN_USER_ID, 
+         UP_DATE,
+         UP_USER_ID
+      ) 
+      VALUES
+      (
+         (SELECT NVL(MAX(COMM_SEQ),0)
+		  FROM COMM)+1,
+         :1, 
+         :2, 
+         0, 
+         'n', 
+         :3, 
+         :4, 
+         TO_CHAR(SYSDATE, 'YYYYMMDD.HH24MISS'), 
+         :5, 
+         TO_CHAR(SYSDATE, 'YYYYMMDD.HH24MISS'), 
+         :6
+      )
+   </update>
+   
+   <update id="update_del">
+      UPDATE 
+         COMM 
+      SET 
+         DEL_FLAG       ='y',  
+         UP_DATE        = TO_CHAR(SYSDATE, 'YYYYMMDD.HH24MISS'), 
+         UP_USER_ID     =:1
+      WHERE 
+         COMM_SEQ		=:2
+   </update>
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+   <update id="merge">
+         MERGE INTO good
+          USING DUAL
+         ON (user_id = :1 and comm_seq = :2)
+         WHEN MATCHED THEN
+                update set up_user_id =:1
+              delete where user_id =:1
+         WHEN NOT MATCHED THEN
+            INSERT (
+               user_id, comm_seq, in_date, in_user_id, up_date, up_user_id) 
+            VALUES (
+               :1,:2, TO_CHAR(SYSDATE, 'YYYYMMDD.HH24MISS'), :1, TO_CHAR(SYSDATE, 'YYYYMMDD.HH24MISS'), :1)
+   
+   
+   </update>
+   
+   
+   <select id="countgood">
+   select count(*) as finalcnt from good where comm_seq =:1
+   
+   
+   </select>
+   
+   
+   
+   <select id="comm_myheart">
+   	SELECT 	
+			C.COMM_SEQ,
+			C.COMM_TITLE,
+			C.COMM_CONTENT,
+			C.COMM_HIT,
+			C.DEL_FLAG,
+			C.ATTACH_FILE,
+			C.ATTACH_PATH,
+			C.IN_DATE,
+			C.IN_USER_ID,
+			C.UP_DATE,
+			C.UP_USER_ID, 
+			NVL(TBL.REPLY,0) AS CNT,
+            NVL(goodTBL.good_cnt,0) AS good_CNT
+            
+	FROM 
+		COMM C LEFT OUTER JOIN 
+			(
+			SELECT 
+				COMM_SEQ, 
+				COUNT(*) AS REPLY 
+	        FROM 
+	        	REPLY
+	        GROUP BY 
+	        	COMM_SEQ
+	        )
+			TBL
+		ON C.COMM_SEQ =  TBL.COMM_SEQ
+   left outer join (select comm_seq, count(*) as good_cnt
+                    from good
+                    group by comm_seq) goodtbl
+        on c.comm_seq = goodtbl.comm_seq
+    right outer join good gg 
+    on (gg.comm_seq = c.comm_seq)
+    where gg.user_id =:1
+		ORDER BY 
+	       	C.IN_DATE 
+		DESC
+   
+   
+   </select>
+   
+   
+   
+   
+   
+   
+   
+   
+   
+   
+</mapper>

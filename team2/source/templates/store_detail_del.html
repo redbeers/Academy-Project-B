@@ -1,0 +1,326 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>나도시락 : 나도주문!</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	
+	<script src="assets/js/jquery.min.js"></script>
+	<script type="text/javascript"  src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript"  src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+   
+	<script>
+	$(document).ready(function(){
+        $('#myTable').dataTable({
+       	  "ordering": false,
+       	  "language": {
+       	      "emptyTable": "메뉴가 존재하지 않습니다"
+       	    }
+       	  
+        });
+     });
+	
+	function fn_detail_mod(menu_seq,i){
+		var flag_ok = confirm("메뉴수정을 실행하시겠습니까?");
+		if(flag_ok){
+			
+			console.log(menu_seq)
+			console.log(i)
+			var menu_name = $(".menu_name" + i).val();
+			var menu_price = $(".menu_price" + i).val();
+			var del_flag = $('input:radio[name=chk_info'+i+']:checked').val();
+			
+			
+			console.log(menu_name)
+			console.log(menu_price)
+			console.log(del_flag)
+			
+			if (menu_name.trim() == '') {
+				alert("메뉴를 입력하세요.");
+				$("#menu_name").focus();
+				return;
+			}
+			if (menu_price.trim() == '') {
+				alert("가격을 입력하세요.");
+				$("#menu_price").focus();
+				return;
+			}
+			
+			var price_reg = /^[0-9]*$/;
+			if (!price_reg.test(menu_price)) {
+				alert("가격은 (특수기호없이)숫자만 입력해주세요");
+				$("#menu_price").focus();
+				return false;
+			}
+			
+			
+			var params = location.search.substr(location.search.indexOf("?") + 1);
+	        var store_seq = params.substr(params.indexOf("=")+1); 
+	        var param = "";
+			param += "dummy=" + Math.random();
+			param += "&store_seq=" + store_seq;
+			param += "&menu_seq=" + menu_seq;
+			param += "&menu_name=" + menu_name;
+			param += "&menu_price=" + menu_price;
+			param += "&del_flag=" + del_flag;
+			
+			console.log(param)
+			
+			$.ajax({
+				url : "store_menu_mod_del.ajax",
+				data : param,
+				dataType : "json",
+				type : "post",
+				/* async : false, */
+				statusCode : {
+					404 : function() {
+						alert("네트워크가 불안정합니다. 다시 시도부탁드립니다.");
+					}
+				},
+				success : function(data) {
+					if (data.msg == "ok") {
+						alert("정상적으로 수정되었습니다.");
+						location.reload();
+					} else {
+						alert("수정도중 문제가 생겼습니다.");
+					}
+					console.log(data.msg)
+				}
+			});
+			
+		}
+		
+	}
+	function fn_detail_list(){
+		history.back();
+		
+	}
+	
+	function fn_logout(){
+		var flag_ok = confirm("로그아웃 하시겠습니까?");
+		if(flag_ok == true){
+			location.href="logout";
+		}	
+	}
+		
+	function fn_mypage(){
+		location.href="mypage"
+	}
+	
+	</script>
+	
+	<style>
+	.write_btn{
+         width:160px;
+         float: right;
+         margin: 2%;
+      }
+     .del_btn{
+    	width:160px;
+     }
+	#header a{
+		font-weight: bold;
+	}
+	
+	#r{
+		width:50%;
+		text-align: right;
+		float:right;
+		padding-top: 1%;
+	}
+	#a{
+		font-size: 20px;
+		width : 49%;
+		float:left;
+		font-weight: bold;
+		color : #3d4449;
+	}
+	#myTable th{
+		text-align: center;
+		background-color: rgba(230, 235, 237, 0.25);
+		padding: 1%;
+	}
+	#myTable td{
+		text-align: center;
+	}
+	#myTable_length{
+      	display: none;
+      }
+      #myTable_filter{
+      	display: none;
+      }
+      #myTable_info{
+      	display: none;
+      }
+      #myTable_previous{
+      	padding-right: 2%;
+      }
+      #myTable_next{
+      	padding-left: 2%;
+      }
+      span a{
+      	margin: 2%;
+      }
+      #myTable_paginate{
+      
+      	text-align: center;
+      }
+
+	
+	</style>
+		
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<div id="a">메뉴수정 및 삭제</div>
+									<div id="r1">
+										{% if session.user_id == '1' %}
+										<a class="home_select">{{session.user_name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+										<a href="javascript:fn_logout()" class="home_select">로그아웃</a>
+										
+										{% elif session.user_id%}
+										
+										{% if session.user_gubun == 'b' %}
+										<a class="home_select">{{session.user_name}}님[반장]</a>
+										{% else %}
+										<a class="home_select">{{session.user_name}}님[학생]</a>
+										{% endif %}
+										
+										
+										<a href="javascript:fn_mypage()" class="select_main">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;마이페이지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+										<a href="javascript:fn_logout()" class="home_select">로그아웃</a>
+										
+										
+										{% else %}
+										<a href="login.html" class="select_main" >로그인&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
+										<a href="register.html" class="select_main">회원가입</a>
+										{% endif %}
+										
+									</div>
+									
+								</header>
+
+							<!-- Banner -->
+								<br>
+								<input type="hidden" name="menu_seq" value="{{menu_seq}}">
+								
+								<table id="myTable">
+								  <thead>
+									<tr>
+										<th>번호</th>
+										<th>메뉴명</th>
+										<th>메뉴가격(원)&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+										<th>메뉴 활성화여부&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</th>
+										<th>수정 및 삭제버튼</th>
+									</tr>
+								  </thead>
+								  
+								  <tbody>
+									{% for i,s in enumerate(list)%}
+									<tr>
+										<td><a>{{ loop.index }}</a></td>
+										<td><input type="text" value="{{s.menu_name}}" class="menu_name{{i}}"></td>
+										<td><input type="text" value="{{'{:,}'.format(s.menu_price)}}" class="menu_price{{i}}"></td>
+										<td>
+										{% if s.del_flag == 'n' %}
+											<input type="radio" name="chk_info{{i}}" value="n" checked />활성화&nbsp;&nbsp;&nbsp;
+											<input type="radio" name="chk_info{{i}}" value="y" />비활성화
+										{% else %}
+											<input type="radio" name="chk_info{{i}}" value="n" />활성화&nbsp;&nbsp;&nbsp;
+											<input type="radio" name="chk_info{{i}}" value="y" checked />비활성화
+										</td>
+										{% endif %}
+										
+										<td><input class="del_btn" type="button" onclick="fn_detail_mod('{{s.menu_seq}}','{{i}}')" value="수정" /></td>
+									</tr>
+									{% endfor %}
+									
+								  </tbody>
+									
+								</table>
+								
+								<input class="write_btn" type="button" onclick="fn_detail_list()" value="뒤로가기" />
+							<!-- Section -->
+
+							<!-- Section -->
+							
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="#">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>메뉴</h2>
+									</header>
+									<ul>
+										<li><a href="home">HOME</a></li>
+										{% if session.user_id == '1' %}
+										<li><a href="today_order">주문현황</a></li>
+										<li><a href="admin_order_list">총주문조회</a></li>
+										<li><a href="user_list">학생조회</a></li>
+										<li><a href="comm">커뮤니티</a></li>
+										<li><a href="qna">QnA</a></li>
+										<li><a href="store_list">업체관리</a></li>
+										<li><a href="room_list">호실관리</a></li>
+										{% endif %}
+										{% if session.user_id != '1' %}
+										<li><a href="order">주문하기</a></li>
+										<li><a href="today_order">주문현황</a></li>
+										<li><a href="myorder_list">내주문조회</a></li>
+										<li><a href="user_list">학생조회</a></li>
+										<li><a href="comm">커뮤니티</a></li>
+										<li><a href="qna">QnA</a></li>
+										{% endif %}
+
+									</ul>
+								</nav>
+
+							<!-- Section -->
+
+							<!-- Section -->
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

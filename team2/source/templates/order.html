@@ -1,0 +1,719 @@
+<!DOCTYPE HTML>
+<!--
+   Editorial by HTML5 UP
+   html5up.net | @ajlkn
+   Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<style>
+#select_store {
+   margin-top: 5%;
+   height: 350px;
+}
+
+.select_option {
+   margin-bottom: 5%;
+   margin-right: 2.5%;
+   margin-left: 2.5%;
+   width: 28%;
+   text-align-last: center;
+   display: inline-block;
+}
+
+#ex {
+   list-style: none;
+   text-align: right;
+   float: right;
+}
+
+   #header a{
+      font-weight: bold;
+   }
+   
+   #r{
+      width:50%;
+      text-align: right;
+      float:right;
+      padding-top: 1%;
+   }
+   #a{
+      font-size: 20px;
+      width : 49%;
+      float:left;
+      font-weight: bold;
+      color : #3d4449;
+   }
+
+#order_btn {
+   width: 160px;
+   float: right;
+   margin-top: 12%;
+}
+
+.btn {
+   width: 160px;
+   float: right;
+}
+
+#total_order {
+   font-size: 17px;
+   font-weight: bold;
+}
+
+.table_title {
+   padding: 1%;
+   
+}
+
+table th {
+   background-color: rgba(230, 235, 237, 0.25);
+   text-align:  center;
+}
+
+
+table {
+   margin-bottom: 2%;
+}
+
+.total {
+   font-size: medium;
+   font-weight: bold;
+}
+
+
+
+
+
+
+.tooltip {
+  position: relative;
+  display: inline-block;
+  border-bottom: 1px dotted black;
+}
+
+.tooltip .tooltiptext {
+  visibility: hidden;
+  width: 160px;
+  background-color: black;
+  color: #fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px 0;
+  
+  /* Position the tooltip */
+  position: absolute;
+  z-index: 1;
+  top: 100%;
+  left: 50%;
+  margin-left: -60px;
+}
+
+ .tooltip:hover .tooltiptext { 
+   visibility: visible; 
+ } 
+
+.center{
+	width : 27%;
+}
+
+#ai_div{
+   text-align: center;    
+}
+#ai{
+   font-weight: bold;
+   font-size: 1.7em;
+   background-color: #fde4dd;
+}
+
+
+
+
+
+
+
+
+
+
+</style>
+<script src="assets/js/jquery.min.js"></script>
+
+<script>
+   function fn_logout(){
+      var flag_ok = confirm("로그아웃 하시겠습니까?");
+      if(flag_ok == true){
+         location.href="logout";
+      }   
+   }
+      
+   function fn_mypage(){
+      location.href="mypage"
+   }
+   /////예진
+   
+   function fn_person(menu_seq,room_seq, now_date,cnt){
+      
+      var param = "";
+        param += "dummy=" + Math.random();
+        param += "&menu_seq=" + menu_seq
+        param += "&room_seq=" + room_seq
+        param += "&now_date=" + now_date
+        
+
+        $.ajax({
+           url : "order_person.ajax",
+           data : param,
+           dataType : "json",
+           type : "post",
+           async : false,
+           statusCode : {
+              404 : function() {
+                 alert("네트워크가 불안정합니다. 다시 시도부탁드립니다.");
+              }
+           },
+           success : function(data) {
+              if(data.msg == "ok"){
+                 var res = ""
+                 for (var i=0; i<data.op_list.length; i++){
+                    res += " " + data.op_list[i]['user_id'] + "(" + data.op_list[i]['user_name'] + ") \n" 
+                 }
+                 console.log(cnt)
+                 r = "tt_" + cnt
+                 $('#' + r).text(res);
+                 
+              } else{
+                 
+                 alert("문제가 생겼습니다.")
+              }
+           }
+        });
+        
+        
+   }
+
+
+
+      function fn_pay(i, total_price, store_seq){
+         var flag = 0;
+         flag = fn_time();
+         if(flag == -1){
+            alert("주문/결제 가능시간은 오전 9~11시 입니다.")
+            return;
+         }
+         
+         var flag='n';
+         
+         console.log(i);
+         
+         var menu_name = $("td[name=menu_name]").eq(i-1).text();
+         var menu_price = $("td[name=menu_price]").eq(i-1).text();
+         var order_cnt = $("td[name=order_cnt]").eq(i-1).text();
+         
+         console.log("dddddddddddddddddddddddddd")
+         console.log(menu_name);
+         console.log(menu_price);
+         console.log(order_cnt);
+         
+         var param = "";
+             param += "dummy=" + Math.random();
+             param += "&store_seq=" + store_seq
+             param += "&menu_name=" + menu_name
+             param += "&menu_price=" + menu_price
+             param += "&order_cnt=" + order_cnt
+             
+             console.log(param)
+
+             $.ajax({
+                url : "order_pay_flag.ajax",
+                data : param,
+                dataType : "json",
+                type : "post",
+                async : false,
+                statusCode : {
+                   404 : function() {
+                      alert("네트워크가 불안정합니다. 다시 시도부탁드립니다.");
+                   }
+                },
+                success : function(data) {
+                   console.log(data.msg);
+                   if(data.msg == "ok"){
+                      console.log(data.sms);
+                      
+                   } else{
+                      
+                      flag='y';
+                   }
+                }
+             });
+             
+             
+         if(flag=='y'){
+            alert("이미 결제되었습니다.");
+         }else{
+            var store_name = $('th[name=s_name]').eq(i-1).text();
+            
+            var store_code = $('input[name=s_code]').eq(i-1).val();
+            
+            console.log("dddd");
+            console.log(store_name);
+            console.log(store_code);
+            
+            
+               let param1 = "dummy=" + Math.random();
+                  param1 += "&store_code="+store_code;
+                  param1 += "&store_name="+store_name;
+                  param1 += "&total_price="+total_price;
+                  param1 += "&store_seq="+store_seq;
+
+               $.ajax({
+                   url: "/kakaopay/paymethod.ajax",
+                   data: param1,
+                   dataType: "json",
+                   type: "post",
+                   async: false,
+                   statusCode: {
+                       404: function () {
+                           alert("네트워크가 불안정합니다. 다시 시도부탁드립니다.");
+                       }
+                   },
+                   success: function (data) {
+                      
+                      data_url = data["next_url"];
+                      
+          
+                       location.href=data_url;
+                   }
+                   
+               });
+            
+         }
+         
+      }
+      
+      
+      
+      $(document).ready(function(){
+    	  
+    	  
+    	  var graduation_glag = '{{gra_list[0].graduation_flag}}'
+        	  if(graduation_glag == 'y'){
+    	    	  alert('졸업생은 주문을 할 수 없습니다');
+    	    	  location.href="home";
+        	  }
+
+    	  
+    	  
+    	  
+    	  var param = "";
+          param += "dummy=" + Math.random();
+          
+          
+          console.log(param)
+
+          $.ajax({
+             url : "menu_recomm.ajax",
+             data : param,
+             dataType : "json",
+             type : "post",
+             async : false,
+             statusCode : {
+                404 : function() {
+                   alert("네트워크가 불안정합니다. 다시 시도부탁드립니다.");
+                }
+             },
+             success : function(data) {
+                console.log(data.msg);
+                if(data.msg == "ok"){
+                   $('#ai').text("TODAY'S AI PICK------>   " + data.menu_name);
+                   
+                }
+             }
+          });
+    	  
+    	  
+    	  
+    	  
+    	
+   
+         var user_id = $("input[name=user_id]").val();
+
+         console.log(user_id);
+         banjang_flag = ''; 
+         
+         
+         var param = "";
+         param += "dummy=" + Math.random();
+         param += "&user_id=" + user_id;
+            
+         
+         
+         
+         $.ajax({
+                url : "banjang_order.ajax",
+                data : param,
+                dataType : "json",
+                type : "post",
+                async : false,
+                statusCode : {
+                   404 : function() {
+                      alert("네트워크가 불안정합니다. 다시 시도부탁드립니다.");
+                   }
+                },
+                
+                success : function(data) {
+                	console.log(data.msg);
+                   
+                
+                	var blist = data.blist
+                    console.log(blist)
+                    
+                    
+                    
+                   txt = ""
+                   var cnt = -1;
+                    for(var i=0;i<blist.length;i++){
+                       
+                       total_price = 0;
+                       if(blist[i].length>0){
+                          
+                             txt += "<a id='total_order'>[총 주문]</a>"
+                                
+                             txt += "<table>"
+                             txt += "<tr>"
+                             txt += "<input type='hidden' name='s_code' value="+blist[i][0].store_code+">"
+                             
+                             txt += "<th class='table_title' name='s_name'>"+blist[i][0].store_name+"</th>"
+                             txt += "<th class='table_title'>메뉴</th>"
+                             txt += "<th class='table_title'>단가</th>"
+                             txt += "<th class='table_title'>개수</th>"
+                             txt += "</tr>"
+                       
+                       
+                          if(blist[i].length>0){
+                       for(var j=0;j<blist[i].length;j++){
+                          cnt++;
+                             txt += "<tr>"
+                             txt += "<td class='center'></td>"
+                          //////////////////////////////////////////////////////////////
+                             txt += "<td name='menu_name' class='center'><div class='tooltip'>"+blist[i][j].menu_name+"<span class='tooltiptext' id='tt_"+cnt+"' onmouseover='fn_person("+blist[i][j].menu_seq+','+blist[i][j].room_seq+',' +blist[i][j].in_date+','+cnt+")'><span><div></td>"
+                             
+                             m_price = blist[i][j].menu_price;
+                             p = m_price.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+                             
+                             txt += "<td name='menu_price' class='center'>"+p+"원</td>"
+                             txt += "<td id='' name='order_cnt' class='center'>"+blist[i][j].order_cnt+"개</td>"
+                             txt += "</tr>"
+                             
+
+                             total_price +=  blist[i][j].menu_price * blist[i][j].order_cnt;
+                             c1 = total_price.toString()
+                               .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+
+                            
+                          }
+                          
+                       }
+                             
+                             
+                             txt += "</table>"
+                             txt += "<a class='total'>합계 : "+c1+"원</a>"
+                             if (data.msg == 'b'){
+                             txt += '<input type="button" class="btn" value="결제하기" onclick="fn_pay('+i+','+total_price+','+blist[i][0].store_seq+')">'
+                             }
+                             txt += "<br><br><br>"
+                             //txt += "</div>"   
+                             
+                    }
+                 
+                    }   
+                 $('#b_div').html(txt);   
+               
+                
+          }
+       });
+         
+      });
+      
+       
+      
+      
+      function fn_order(){
+         var flag = 0;
+         flag = fn_time();
+         if(flag == -1){
+            alert("주문/결제 가능시간은 오전 9~11시 입니다.")
+            return;
+         }
+         var store_seq = $("select[name=store_name] option:selected").val()
+         var menu_seq = $("select[name=select_menu] option:selected").val()
+         var order_cnt = $("select[name=buy_cnt] option:selected").val()
+         //alert(menu_seq)
+         //alert(order_cnt)
+             var param = "";
+             param += "dummy=" + Math.random();
+             param += "&store_seq=" + store_seq
+             param += "&menu_seq=" + menu_seq
+             param += "&order_cnt=" + order_cnt
+             //console.log(param)
+
+             $.ajax({
+                url : "order_add.ajax",
+                data : param,
+                dataType : "json",
+                type : "post",
+                async : false,
+                statusCode : {
+                   404 : function() {
+                      alert("네트워크가 불안정합니다. 다시 시도부탁드립니다.");
+                   }
+                },
+                success : function(data) {
+                   if(data.msg == "ok"){
+                      alert("주문 성공! 주문내역은 내주문조회에서 확인가능합니다");   
+                      location.reload();
+                   }else if(data.msg = "pay_com"){
+                      alert("오늘 주문은 이미 결제되었습니다. 내일 다시 주문해주세요.")
+                   } 
+                   else{
+                      alert("주문 실패! 죄송하지만 다시 한 번 시도해주세요")
+                   }
+                   console.log(data.msg)
+                }
+             });
+      }
+      
+      function pluszero(time){
+           var time = time.toString(); // 시간을 숫자에서 문자로 바꿈
+           if(time.length < 2){ //2자리 보다 작다면
+               time = '0' + time; //숫자앞 0을 붙여줌
+                    return time; //값을 내보냄
+          }else{
+              return time; //2자리라면 값을 내보냄
+          }
+       }
+      
+      function fn_time(){
+         
+         var Now = new Date(); // 현재 날짜 및 시간
+          var nowHour = Now.getHours(); // 시
+          var nowMins = Now.getMinutes(); // 분
+
+
+          nowHour = pluszero(nowHour);
+          nowMins = pluszero(nowMins);
+         
+          var nowtime = nowHour + nowMins;
+          var starttime = '0900'; //시작 시간
+          var endtime = '2400';
+          
+          console.log(nowtime);
+          console.log(starttime);
+          console.log(endtime);
+
+
+          if(starttime > nowtime || endtime < nowtime ){ //지금이 시작시간보다 작거나, 종류시간보다 크면 
+             
+             return -1;
+          }
+      }
+   
+         
+      
+      
+      function fn_store(){
+          
+          var store_seq = $("select[name=store_name] option:selected").val() // 이래야 value 값 가져온다
+          //var seq = $("select[name=store_name] option:selected").text() -> 토마토도시락
+          //alert(seq)
+          var param = "";
+              param += "dummy=" + Math.random();
+              param += "&store_seq=" + store_seq
+              console.log(param)
+
+              $.ajax({
+                 url : "order_menu_select.ajax",
+                 data : param,
+                 dataType : "json",
+                 type : "post",
+                 async : false,
+                 statusCode : {
+                    404 : function() {
+                       alert("네트워크가 불안정합니다. 다시 시도부탁드립니다.");
+                    }
+                 },
+                 
+                 success : function(data) {
+                 
+                    
+                 var list = data.list
+                  var txt = "";
+                 
+                 for(var i=0;i<list.length;i++){
+                    txt += "<option id=" + "\n";
+                    txt += "      "+list[i].menu + "\n";
+                    txt += "   value=" + "\n";
+                    txt += "      "+list[i].menu_seq + "\n";
+                    txt += "   >" + "\n";
+                    txt += "      "+list[i].menu_name + "\n";
+                    
+                    menu_price =  list[i].menu_price;
+                    c1 = menu_price.toString()
+                      .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+                    
+                    
+                    txt += "      ( "+ c1 + "\n";
+                    txt += "   원)</option>" + "\n";
+                 }
+                 
+                 
+                 $("#select_menu").html(txt); 
+              }
+           });
+          
+          
+       }
+   </script>
+<head>
+<title>나도시락 : 나도주문!</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="assets/css/main.css" />
+</head>
+
+<body class="is-preload">
+   <input type="hidden" name="user_id" value="{{session.user_id}}">
+
+
+   <!-- Wrapper -->
+   <div id="wrapper">
+
+      <!-- Main -->
+      <div id="main">
+         <div class="inner">
+
+
+
+            <!-- Header -->
+            <header id="header">
+                       <div id="a">주문하기</div>
+                           <div id="r">
+                     {% if session.user_id == '1' %}
+                     <a class="home_select">{{session.user_name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                     <a href="javascript:fn_logout()" class="home_select">로그아웃</a>
+                     
+                     {% elif session.user_id%}
+                     
+                     {% if session.user_gubun == 'b' %}
+                     <a class="home_select">{{session.user_name}}님[반장]</a>
+                     {% else %}
+                     <a class="home_select">{{session.user_name}}님[학생]</a>
+                     {% endif %}
+                     
+                     
+                     <a href="javascript:fn_mypage()" class="select_main">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;마이페이지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                     <a href="javascript:fn_logout()" class="home_select">로그아웃</a>
+                     
+                     
+                     {% else %}
+                     <a href="login.html" class="select_main" >로그인&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
+                     <a href="register.html" class="select_main">회원가입</a>
+                     {% endif %}
+                     
+                  </div>
+            </header>
+            <br>
+            <!-- 컨펌창 으로 확인취소 띄우기 -->
+            <form id="select_store">
+				
+				<div id="ai_div"><p id='ai'></p></div>
+
+               <select name="store_name" class="select_option" onchange="fn_store()">
+
+                  <option value="none" id="store">=== 가게 선택 ===</option> {% for i,s in enumerate(slist)%}
+
+                  <option id="store{{s}}" value="{{s.store_seq}}">{{s.store_name}}</option> {% endfor %}
+               </select> <select id="select_menu" name="select_menu" class="select_option">
+                  <option value="none" id="store">=== 메뉴 선택 ===</option>
+               </select> <select name="buy_cnt" class="select_option">
+                  <option value="none">=== 수량 ===</option>
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                  <option value="4">4</option>
+                  <option value="5">5</option>
+                  <option value="6">6</option>
+                  <option value="7">7</option>
+                  <option value="8">8</option>
+                  <option value="9">9</option>
+               </select> <input type="button" id="order_btn" value="주문하기" onclick="fn_order()">
+
+            </form>
+            <!-- 결제하기 클릭시 내용 지운다 결제버튼 비활성화 -->
+
+            <div id="b_div"></div>
+         </div>
+      </div>
+
+      <!-- Sidebar -->
+      <div id="sidebar">
+         <div class="inner">
+
+            <!-- Search -->
+            <section id="search" class="alt">
+               <form method="post" action="#">
+                  <input type="text" name="query" id="query" placeholder="Search" />
+               </form>
+            </section>
+
+            <!-- Menu -->
+            <nav id="menu">
+               <header class="major">
+                  <h2>메뉴</h2>
+               </header>
+               <ul>
+                              <li><a href="home">HOME</a></li>
+                              {% if session.user_id == '1' %}
+                              <li><a href="today_order">주문현황</a></li>
+                              <li><a href="admin_order_list">총주문조회</a></li>
+                              <li><a href="user_list">학생조회</a></li>
+                              <li><a href="comm">커뮤니티</a></li>
+                              <li><a href="qna">QnA</a></li>
+                              <li><a href="store_list">업체관리</a></li>
+                              <li><a href="room_list">호실관리</a></li>
+                              {% endif %}
+                              {% if session.user_id != '1' %}
+                              <li><a href="order">주문하기</a></li>
+                              <li><a href="today_order">주문현황</a></li>
+                              <li><a href="myorder_list">내주문조회</a></li>
+                              <li><a href="user_list">학생조회</a></li>
+                              <li><a href="comm">커뮤니티</a></li>
+                              <li><a href="qna">QnA</a></li>
+                              {% endif %}
+
+
+               </ul>
+            </nav>
+
+            <!-- Section -->
+
+            <!-- Section -->
+
+            <!-- Footer -->
+            <footer id="footer">
+               <p class="copyright">
+                  &copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.
+               </p>
+            </footer>
+
+         </div>
+      </div>
+   </div>
+
+   <!-- Scripts -->
+
+   <script src="assets/js/browser.min.js"></script>
+   <script src="assets/js/breakpoints.min.js"></script>
+   <script src="assets/js/util.js"></script>
+   <script src="assets/js/main.js"></script>
+
+</body>
+</html>

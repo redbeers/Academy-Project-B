@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Test">
+   <select id="myselect">
+   select room.room_seq, count(user_info.room_seq) as cnt, del_flag
+   from room left outer join user_info
+   on (room.room_seq = user_info.room_seq and user_info.graduation_flag='n')
+   group by room.room_seq, del_flag
+   
+   order by 1
+   </select>
+	
+	<select id="select_register">
+	select room_seq
+	from room
+	where del_flag = 'n'
+	order by 1
+	
+	</select>
+
+
+
+   <update id="update_ntoy">
+      update 
+         room 
+      set 
+         del_flag = 'y'  
+      where 
+         room_seq =: 1
+   </update>
+
+
+	<update id="update_yton">
+      update 
+         room 
+      set 
+         del_flag        = 'n'  
+      where 
+         room_seq =: 1
+   </update>
+
+
+	<update id="myinsert">
+	insert into room (room_seq, del_flag, in_date, in_user_id, up_date, up_user_id) 
+	values (:1, 'n', to_char(sysdate, 'YYYYMMDD.HH24MISS'), '1',to_char(sysdate, 'YYYYMMDD.HH24MISS'), '1')
+	
+	</update>
+
+	<select id="mycheck">
+	select count(*) as cnt
+	from room
+	where room_seq = :1
+	
+	</select>
+
+	<select id="mydel_select_room">
+   select room.room_seq, count(user_info.room_seq) as cnt, del_flag
+   from room left outer join user_info
+   on (room.room_seq = user_info.room_seq and user_info.graduation_flag='n')
+   where room.room_seq not in (select distinct room_seq from user_info where user_gubun != 'a')
+   group by room.room_seq, del_flag
+   order by 1
+	</select>
+
+	<update id="mydel_room">
+	delete from room
+	where room_seq = :1
+	
+	</update>
+
+
+   
+</mapper>

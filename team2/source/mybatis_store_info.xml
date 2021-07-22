@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Test">
+   
+  <select id="select">
+        select 
+           store_seq,
+           store_name,
+           store_tel,
+           del_flag,
+           in_date,
+           in_user_id,
+           up_date,
+           up_user_id
+          
+        from 
+           store_info
+        where 
+           del_flag ='n'
+       order by store_seq desc
+        
+    </select>
+
+    
+    <select id="select_d">
+        select 
+           store_seq,
+           store_name,
+           store_tel,
+           del_flag,
+           in_date,
+           in_user_id,
+           up_date,
+           up_user_id
+          
+        from 
+           store_info
+       
+        where 
+        	store_seq=:1
+    </select>
+    
+     <select id="select_max">
+        select 
+           max(store_seq)
+          
+        from 
+           store_info
+    </select>
+    
+    
+     <update id="insert">
+      insert into 
+      	store_info 
+      (
+   		store_seq,
+        store_name,
+        store_tel,
+        del_flag,
+        in_date,
+        in_user_id,
+        up_date,
+        up_user_id
+      ) 
+      values 
+      (
+      	 (select nvl(max(store_seq),0)+1 from store_info),
+         :1, 
+         :2, 
+         'n', 
+         to_char(sysdate,'yyyymmdd.hh24miss'), 
+         :3,
+         to_char(sysdate,'yyyymmdd.hh24miss'),
+         :4
+         
+      )
+    </update>
+    
+    <update id="update_sflag">
+       update 
+             store_info 
+       set 
+             del_flag    ='y', 
+             up_date       = to_char(sysdate,'yyyymmdd.hh24miss') 
+          where 
+             store_seq      =:1
+          
+    </update>
+
+	
+	  <update id="update_stel">
+       update 
+             store_info 
+       set 
+             store_tel    =:1, 
+             up_date      = to_char(sysdate,'yyyymmdd.hh24miss'),
+       		 up_user_id   =:2  
+       where 
+             store_seq      =:3
+          
+    </update>
+
+
+    <update id="hit">
+       update 
+             snotice 
+       set 
+         hit = hit+1
+       where 
+         b_seq      =:1
+          
+    </update>
+
+    <update id="del_img">
+       update 
+             snotice 
+       set 
+             attach_path   = '',
+             attach_file   = '' ,
+             up_date       = to_char(sysdate,'yyyymmdd.hh24miss'), 
+             up_user_id    =:1
+          where 
+             b_seq      =:2
+          
+    </update>
+    
+    <update id="delete">
+       delete from snotice where b_seq=:1 
+    </update>
+   
+</mapper>

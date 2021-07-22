@@ -1,0 +1,245 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<head>
+<title>나도시락 : 나도주문!</title>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<link rel="stylesheet" href="assets/css/main.css" />
+</head>
+
+<script src="assets/js/jquery.min.js"></script>
+<script type="text/javascript">
+function fn_logout(){
+	var flag_ok = confirm("로그아웃 하시겠습니까?");
+	if(flag_ok == true){
+		location.href="logout";
+	}	
+}
+	
+function fn_mypage(){
+	location.href="mypage"
+}
+	var cnt = 1;
+	function fn_menu_add() {
+		
+		var menu_name = $("#menu_name").val();
+		var menu_price = $("#menu_price").val();
+		
+		if (menu_name.trim() == '') {
+			alert("메뉴를 입력하세요.");
+			$("#menu_name").focus();
+			return;
+		}
+		
+		if (menu_price.trim() == '') {
+			alert("가격을 입력하세요.");
+			$("#menu_price").focus();
+			return;
+		}
+		
+		var price_reg = /^[0-9]*$/;
+		if (!price_reg.test(menu_price)) {
+			alert("가격은 (특수기호없이)숫자만 입력해주세요");
+			$("#menu_price").focus();
+			return false;
+		}
+		
+		document.frm.submit();
+
+	}
+
+	let idxord = 0;
+	function insRow() {
+		cnt++;
+		
+		$("#menu_cnt1").val(cnt);
+		
+		idxord += 1;
+		let tbody = $('tr.menu').parents('tbody');
+		let td = '<tr id="' + idxord + '"><td height="25"><input type="text" name="n'+idxord+'"></td>'
+		td += '<td height="25"><input type="text" name="p'+idxord+'" ></td>'
+		td += '<td><input name="addButton" type="button" id="del_btn" onClick="removeRow(' + idxord + ')" value="삭제"></td></tr>';
+		tbody.append(td);
+		$('tr.menu>th').attr('rowspan',
+				parseInt($('tr.menu>th').attr('rowspan')) + 1);
+	}
+
+	function removeRow(idx) {
+		$('#' + idx).remove();
+		$('tr.menu>th').attr('rowspan',
+				parseInt($('tr.menu>th').attr('rowspan')) - 1);
+	}
+</script>
+
+<style>
+.btn {
+	width:160px;
+    float: right;
+    margin-left: 2%;
+}
+	#header a{
+		font-weight: bold;
+	}
+	
+	#r{
+		width:50%;
+		text-align: right;
+		float:right;
+		padding-top: 1%;
+	}
+	#a{
+		font-size: 20px;
+		width : 49%;
+		float:left;
+		font-weight: bold;
+		color : #3d4449;
+	}
+
+table th{
+		background-color: rgba(230, 235, 237, 0.25);
+}
+#add_btn, #del_btn{
+	width:160px;
+}
+</style>
+
+<body class="is-preload">
+
+	<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Main -->
+		<div id="main">
+			<div class="inner">
+
+				<!-- Header -->
+				<header id="header">
+					<div id="a">메뉴추가</div>
+					<div id="r">
+						{% if session.user_id == '1' %}
+						<a class="home_select">{{session.user_name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+						<a href="javascript:fn_logout()" class="home_select">로그아웃</a>
+						
+						{% elif session.user_id%}
+						
+						{% if session.user_gubun == 'b' %}
+						<a class="home_select">{{session.user_name}}님[반장]</a>
+						{% else %}
+						<a class="home_select">{{session.user_name}}님[학생]</a>
+						{% endif %}
+						
+						
+						<a href="javascript:fn_mypage()" class="select_main">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;마이페이지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+						<a href="javascript:fn_logout()" class="home_select">로그아웃</a>
+						
+						
+						{% else %}
+						<a href="login.html" class="select_main" >로그인&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
+						<a href="register.html" class="select_main">회원가입</a>
+						{% endif %}
+						
+					</div>
+				</header>
+
+				<!-- Banner -->
+				<br>
+				<form name="frm" action="menu_addact" method="post"  enctype = "multipart/form-data">   
+				<input type="hidden" name="menu_cnt" value="1" id="menu_cnt1"> 
+				<input type="hidden" name="store_seq" value="{{list[0].store_seq}}"> 
+				<table>
+					<tr>
+						<th>가게명</th>
+						<td colspan="4"><input type="text" name="" id="market"  value="{{list[0].store_name}}"readonly="readonly"/></td>
+					</tr>
+					<tr>
+						<th>전화번호</th>
+						<td colspan="4"><input type="tel" name="" id="tel" value="{{list[0].store_tel[0:3]}} - {{list[0].store_tel[3:7]}} - {{list[0].store_tel[7:]}}" readonly="readonly"/></td>
+					</tr>
+					<tbody>
+						<tr class="menu">
+							<th rowspan="1">메뉴</th>
+							<td height="25"><input type="text" name="n0" id="menu_name"></td>
+							<th rowspan="1">가격</th>
+							<td height="25"><input type="text" name="p0"  id="menu_price"></td>
+							<td><input name="addButton" type="button" onClick="insRow()" id="add_btn" value="추가"></td>
+						</tr>
+					</tbody>
+				</table>
+				</form>
+				<input onclick="fn_menu_add()" type="button" class="btn" value="추가완료" />
+				<!-- Section -->
+
+				<!-- Section -->
+
+
+			</div>
+		</div>
+
+		<!-- Sidebar -->
+		<div id="sidebar">
+			<div class="inner">
+
+				<!-- Search -->
+				<section id="search" class="alt">
+					<form method="post" action="#">
+						<input type="text" name="query" id="query" placeholder="Search" />
+					</form> 
+				</section>
+
+				<!-- Menu -->
+				<nav id="menu">
+					<header class="major">
+						<h2>메뉴</h2>
+					</header>
+					<ul>
+										<li><a href="home">HOME</a></li>
+										{% if session.user_id == '1' %}
+										<li><a href="today_order">주문현황</a></li>
+										<li><a href="admin_order_list">총주문조회</a></li>
+										<li><a href="user_list">학생조회</a></li>
+										<li><a href="comm">커뮤니티</a></li>
+										<li><a href="qna">QnA</a></li>
+										<li><a href="store_list">업체관리</a></li>
+										<li><a href="room_list">호실관리</a></li>
+										{% endif %}
+										{% if session.user_id != '1' %}
+										<li><a href="order">주문하기</a></li>
+										<li><a href="today_order">주문현황</a></li>
+										<li><a href="myorder_list">내주문조회</a></li>
+										<li><a href="user_list">학생조회</a></li>
+										<li><a href="comm">커뮤니티</a></li>
+										<li><a href="qna">QnA</a></li>
+										{% endif %}
+
+					</ul>
+				</nav>
+
+				<!-- Section -->
+
+				<!-- Section -->
+
+				<!-- Footer -->
+				<footer id="footer">
+					<p class="copyright">
+						&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.
+					</p>
+				</footer>
+
+			</div>
+		</div>
+
+	</div>
+
+	<!-- Scripts -->
+	<script src="assets/js/browser.min.js"></script>
+	<script src="assets/js/breakpoints.min.js"></script>
+	<script src="assets/js/util.js"></script>
+	<script src="assets/js/main.js"></script>
+
+</body>
+</html>

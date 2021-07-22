@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Test">
+   
+ <select id="select">
+        select 
+           menu_seq,
+           store_seq,
+           menu_name,
+           menu_price,
+           del_flag,
+           in_date,
+           in_user_id,
+           up_date,
+           up_user_id
+        from 
+           menu 
+        where 
+            store_seq =:1
+        order by 
+        	menu_seq 
+    </select>
+    
+    
+    
+    
+     <select id="select_menu">
+        select menu_seq, menu_name
+		from menu
+		where menu_seq = :1
+    </select>
+    
+    
+    
+    
+    
+    
+     <update id="insert">
+      insert into menu 
+      (
+   		menu_seq,
+        store_seq,
+        menu_name,
+        menu_price,
+        del_flag,
+        in_date,
+        in_user_id,
+        up_date,
+        up_user_id
+      ) 
+      values 
+      (
+      	 (select nvl(max(menu_seq),0)+1 from menu),
+         :1, 
+         :2, 
+         :3,
+         'n', 
+         to_char(sysdate,'yyyymmdd.hh24miss'), 
+         :4,
+         to_char(sysdate,'yyyymmdd.hh24miss'), 
+         :5
+         
+         
+      )
+    </update>
+    
+    <update id="update_sflag">
+       update 
+             store_info 
+       set 
+             del_flag    ='y', 
+             up_date       = to_char(sysdate,'yyyymmdd.hh24miss') 
+          where 
+             store_seq      =:1
+          
+    </update>
+    
+    <update id="update_munu">
+		update 
+			menu
+		set 
+			menu_name =:1,
+		    menu_price =:2,
+		    del_flag=:3,
+		    up_date       = to_char(sysdate,'yyyymmdd.hh24miss'),
+		    up_user_id =:4
+		where 
+		    menu_seq=:5
+          
+    </update>
+
+
+    
+    <update id="delete">
+       delete from snotice where b_seq=:1 
+    </update>
+   
+   <update id="insert_recomm">
+   insert into recom(recom_seq, menu_seq, user_id, in_date, in_user_id, up_date, up_user_id)
+	values((select nvl(max(recom_seq),0)+1 from recom)
+	,:1, :2, to_char(sysdate,'yyyymmdd.hh24miss'), :3, to_char(sysdate,'yyyymmdd.hh24miss'),:4)
+   
+   
+   </update>
+   
+   
+   
+   
+</mapper>

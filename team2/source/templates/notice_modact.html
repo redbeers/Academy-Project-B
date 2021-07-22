@@ -1,0 +1,22 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+<script>
+	var cnt ='{{cnt}}';
+	
+	if(cnt == '1'){
+		alert("정상적으로 수정되었습니다");
+		
+		location.href="notice_detail?notice_seq={{notice_seq}}";
+	}else{
+		alert("수정 도중 오류가 생겼습니다");
+		history.back();
+	}
+
+
+</script>
+</html>

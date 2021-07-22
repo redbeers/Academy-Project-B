@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Test">
+	<select id="select">
+	SELECT
+		REPLY_SEQ,
+		COMM_SEQ,
+		REPLY_CONTENT,
+		IN_DATE,
+		IN_USER_ID,
+		UP_DATE,
+		UP_USER_ID
+	FROM
+		REPLY  
+	WHERE 
+    	COMM_SEQ = :1
+	ORDER BY 
+       	4 
+	DESC
+	</select>
+   
+   
+   
+	<update id="insert">
+		INSERT INTO REPLY 
+      (
+			COMM_SEQ,
+			REPLY_SEQ,
+			REPLY_CONTENT,
+			IN_DATE,
+			IN_USER_ID,
+			UP_DATE,
+			UP_USER_ID
+      ) 
+      VALUES
+      (
+         :1, 
+      	 (select nvl(max(reply_seq),0)
+		  from reply)+1,
+         :2, 
+         to_char(sysdate, 'YYYYMMDD.HH24MISS'), 
+         :3, 
+         to_char(sysdate, 'YYYYMMDD.HH24MISS'), 
+         :4
+      )
+   </update>
+   
+   
+   
+   <update id="del">
+		DELETE FROM REPLY
+           WHERE COMM_SEQ = :1 and REPLY_SEQ = :2 
+   </update>
+</mapper>

@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Test">
+	<select id="select_list">
+		SELECT
+		qna_seq,
+		qna_title,
+		qna_content,
+		qna_answer,
+		del_flag,
+		attach_file,
+		attach_path,
+		in_date,
+		in_user_id,
+		up_date,
+		up_user_id
+		from
+		qna
+		where del_flag='n'
+		order by in_date desc
+
+	</select>
+
+
+	<select id="select">
+		SELECT
+		qna_seq,
+		qna_title,
+		qna_content,
+		qna_answer,
+		del_flag,
+		attach_file,
+		attach_path,
+		in_date,
+		in_user_id,
+		up_date,
+		up_user_id
+		from
+		qna
+		where
+		qna_seq = :1
+		and
+		del_flag='n'
+
+	</select>
+
+	<select id="select_seq">
+		select
+		nvl(max(qna_seq),0)+1
+		from
+		qna
+
+	</select>
+
+
+	<update id="insert">
+		insert into qna
+		(
+		qna_seq,
+		qna_title,
+		qna_content,
+		qna_answer,
+		del_flag,
+		attach_file,
+		attach_path,
+		in_date,
+		in_user_id,
+		up_date,
+		up_user_id
+		)
+		values
+		(
+		(select nvl(max(qna_seq),0)+1
+		from qna),
+		:1,
+		:2,
+		'',
+		'n',
+		:3,
+		:4,
+		to_char(sysdate, 'YYYYMMDD.HH24MISS'),
+		:5,
+		to_char(sysdate, 'YYYYMMDD.HH24MISS'),
+		:6
+		)
+	</update>
+
+	<update id="insert_answer">
+		update
+		qna
+		set
+		qna_answer=:1
+		where
+		qna_seq=:2
+	</update>
+
+	<update id="delete_answer">
+		update
+		qna
+		set
+		qna_answer=null
+		where
+		qna_seq=:1
+	</update>
+
+	<update id="delete">
+		update
+		qna
+		set
+		del_flag='y'
+		where
+		qna_seq=:1
+	</update>
+
+
+
+
+</mapper>

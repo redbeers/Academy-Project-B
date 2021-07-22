@@ -1,0 +1,4759 @@
+2021-04-14 14:53:42,579 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 15:07:27,897 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 15:15:36,478 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 15:15:39,370 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 15:17:08,042 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 15:17:09,561 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 15:17:17,227 - MyLog - DEBUG - 
+update users
+set user_nm = :1,
+    user_password = :2,
+    user_telno = :3,
+    user_email = :4,
+    up_date= to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS'),
+    up_user_id = :5
+where user_id =:6
+2021-04-14 15:17:17,256 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 15:20:59,453 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 15:21:05,605 - MyLog - DEBUG - 
+update users
+set user_nm = :1,
+    user_password = :2,
+    user_telno = :3,
+    user_email = :4,
+    up_date= to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS'),
+    up_user_id = :5
+where user_id =:6
+2021-04-14 15:21:05,680 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 15:27:30,510 - MyLog - DEBUG - 
+update users
+set user_nm = :1,
+    user_password = :2,
+    user_telno = :3,
+    user_email = :4,
+    up_date= to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS'),
+    up_user_id = :5
+where user_id =:6
+2021-04-14 15:27:30,552 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 15:27:32,704 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 15:48:41,894 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 15:49:35,770 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id,
+
+  (select name
+   from ticket p
+   where p.in_user_id = u.user_id) name
+from users u
+2021-04-14 15:50:12,984 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-14 15:52:45,678 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 15:52:47,937 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-14 15:53:04,073 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 16:01:40,219 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 16:05:06,142 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 16:10:42,735 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 16:13:53,535 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 16:15:27,344 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 16:32:49,509 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 16:34:22,296 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 16:34:25,936 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-14 16:34:40,826 - MyLog - DEBUG - 
+insert into ticket (ticket_no, name, price, in_date, in_user_id, up_date, up_user_id)
+values (ticket_seq.NEXTVAL, :1, :2, to_char(sysdate, 'YYYYMMDD.HH24MISS'), :3, to_char(sysdate, 'YYYYMMDD.HH24MISS'), :4)
+2021-04-14 16:34:42,097 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-14 16:34:47,210 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+where ticket_no = :1
+order by ticket_no
+2021-04-14 16:34:51,311 - MyLog - DEBUG - 
+update ticket
+set name =:1,
+    price =:2,
+    up_date = to_char(sysdate, 'YYYYMMDD.HH24MISS'),
+    up_user_id =:3
+where ticket_no=:4
+2021-04-14 16:34:52,265 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-14 16:34:54,026 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+where ticket_no = :1
+order by ticket_no
+2021-04-14 16:34:57,162 - MyLog - DEBUG - 
+delete
+from ticket
+where ticket_no = :1
+2021-04-14 16:34:58,594 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-14 16:35:05,314 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+where ticket_no = :1
+order by ticket_no
+2021-04-14 16:35:07,187 - MyLog - DEBUG - 
+delete
+from ticket
+where ticket_no = :1
+2021-04-14 16:35:56,803 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+where ticket_no = :1
+order by ticket_no
+2021-04-14 16:40:53,002 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-14 16:40:54,670 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+where ticket_no = :1
+order by ticket_no
+2021-04-14 16:40:57,017 - MyLog - DEBUG - 
+delete
+from ticket
+where ticket_no = :1
+2021-04-14 16:41:41,474 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-14 16:41:42,940 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+where ticket_no = :1
+order by ticket_no
+2021-04-14 16:41:45,452 - MyLog - DEBUG - 
+delete
+from ticket
+where ticket_no = :1
+2021-04-14 16:41:46,854 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-14 16:41:50,140 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+where ticket_no = :1
+order by ticket_no
+2021-04-14 16:41:53,692 - MyLog - DEBUG - 
+update ticket
+set name =:1,
+    price =:2,
+    up_date = to_char(sysdate, 'YYYYMMDD.HH24MISS'),
+    up_user_id =:3
+where ticket_no=:4
+2021-04-14 16:41:55,045 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-14 16:41:58,644 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-14 17:02:59,086 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 17:02:59,837 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 19:02:24,568 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 19:02:26,907 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-14 19:32:49,992 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 19:32:52,131 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 19:33:20,406 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 19:33:25,755 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 19:33:47,867 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 19:35:34,565 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 19:38:57,827 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 19:50:31,285 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 19:50:35,391 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 20:18:43,540 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 20:20:24,750 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 20:20:46,189 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 20:26:59,759 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 20:27:46,129 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 20:28:23,721 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 20:31:22,005 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 20:31:35,020 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 20:34:25,754 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 20:34:29,254 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 20:37:39,051 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 20:38:00,525 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 20:38:09,572 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 20:38:39,554 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 20:39:18,665 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 20:41:29,177 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-14 20:41:36,534 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 20:43:04,327 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-14 20:43:18,398 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 20:47:40,606 - MyLog - DEBUG - 
+update qestn
+set answer=:1,
+    up_date=to_char(sysdate, 'YYYYMMDD.HH24MISS'),
+    up_user_id=:2
+where user_id=:3
+2021-04-14 20:47:47,694 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id,
+
+  (select name
+   from ticket p
+   where p.in_user_id = u.user_id) name
+from users u
+2021-04-14 20:48:35,838 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id,
+
+  (select name
+   from ticket p
+   where p.in_user_id = u.user_id) name
+from users u
+2021-04-14 20:49:51,729 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id,
+
+  (select name
+   from ticket p
+   where p.in_user_id = u.user_id) name
+from users u
+2021-04-14 20:49:57,045 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-14 20:49:59,777 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-14 20:50:03,298 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+where ticket_no = :1
+order by ticket_no
+2021-04-14 20:50:05,940 - MyLog - DEBUG - 
+delete
+from ticket
+where ticket_no = :1
+2021-04-14 20:50:07,532 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+<<<<<<< .mine
+2021-04-15 09:10:21,595 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 09:10:31,348 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 09:12:18,077 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 09:12:32,626 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 09:13:57,314 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 09:14:05,442 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 09:14:08,150 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 09:14:14,461 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id,
+
+  (select name
+   from ticket p
+   where p.in_user_id = u.user_id) name
+from users u
+2021-04-15 09:14:21,920 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-15 11:32:40,980 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 11:32:54,678 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:34:12,842 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 14:34:18,347 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 14:34:23,778 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+where bbs_no = :1
+2021-04-15 14:34:23,791 - MyLog - DEBUG - 
+update bbs
+set rdcnt = rdcnt + 1
+where bbs_no = :1
+2021-04-15 14:34:24,061 - MyLog - DEBUG - 
+select bbs_no,
+       comm_no,
+       user_id,
+       content,
+       likes,
+       dislike,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from comm
+where bbs_no = :1
+order by comm_no
+2021-04-15 14:34:28,728 - MyLog - DEBUG - 
+insert into comm (bbs_no, comm_no, user_id, content, likes, dislike, in_date, in_user_id, up_date, up_user_id)
+values (:1, comm_seq.nextval, :2, :3, 0, 0, to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS'), :4, to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS'), :5)
+2021-04-15 14:34:30,394 - MyLog - DEBUG - 
+select bbs_no,
+       comm_no,
+       user_id,
+       content,
+       likes,
+       dislike,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from comm
+where bbs_no = :1
+order by comm_no
+2021-04-15 15:40:49,174 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 15:41:11,335 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id,
+
+  (select name
+   from ticket p
+   where p.in_user_id = u.user_id) name
+from users u
+order by 8 desc
+2021-04-15 15:41:14,495 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id,
+
+  (select name
+   from ticket p
+   where p.in_user_id = u.user_id) name
+from users u
+order by 8 desc
+2021-04-15 15:41:43,697 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+||||||| .r2113
+=======
+2021-04-15 09:50:10,042 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 09:50:16,918 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 09:58:29,422 - MyLog - DEBUG - 
+insert into users (user_id, user_nm, user_password, user_telno, user_email, mngr_flag, act_flag, in_date, in_user_id, up_date, up_user_id)
+values (:1, :2, :3, :4, :5, :6, :7, to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS'), :8, to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS'), :9)
+2021-04-15 10:02:00,866 - MyLog - DEBUG - 
+insert into users (user_id, user_nm, user_password, user_telno, user_email, mngr_flag, act_flag, in_date, in_user_id, up_date, up_user_id)
+values (:1, :2, :3, :4, :5, :6, :7, to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS'), :8, to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS'), :9)
+2021-04-15 10:03:27,726 - MyLog - DEBUG - 
+insert into users (user_id, user_nm, user_password, user_telno, user_email, mngr_flag, act_flag, in_date, in_user_id, up_date, up_user_id)
+values (:1, :2, :3, :4, :5, :6, :7, to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS'), :8, to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS'), :9)
+2021-04-15 10:05:38,165 - MyLog - DEBUG - 
+insert into users (user_id, user_nm, user_password, user_telno, user_email, mngr_flag, act_flag, in_date, in_user_id, up_date, up_user_id)
+values (:1, :2, :3, :4, :5, :6, :7, to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS'), :8, to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS'), :9)
+2021-04-15 10:05:52,051 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 10:06:20,707 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 10:06:29,500 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 10:08:59,076 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 10:14:46,753 - MyLog - DEBUG - 
+update qestn
+set answer=:1,
+    up_date=to_char(sysdate, 'YYYYMMDD.HH24MISS'),
+    up_user_id=:2
+where user_id=:3
+2021-04-15 10:14:50,867 - MyLog - DEBUG - 
+update qestn
+set answer = null
+where user_id=:1
+2021-04-15 10:15:24,265 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id,
+
+  (select name
+   from ticket p
+   where p.in_user_id = u.user_id) name
+from users u
+2021-04-15 10:16:10,516 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-15 10:16:20,687 - MyLog - DEBUG - 
+insert into ticket (ticket_no, name, price, in_date, in_user_id, up_date, up_user_id)
+values (ticket_seq.NEXTVAL, :1, :2, to_char(sysdate, 'YYYYMMDD.HH24MISS'), :3, to_char(sysdate, 'YYYYMMDD.HH24MISS'), :4)
+2021-04-15 10:16:22,500 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-15 10:16:24,345 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+where ticket_no = :1
+order by ticket_no
+2021-04-15 10:16:27,083 - MyLog - DEBUG - 
+update ticket
+set name =:1,
+    price =:2,
+    up_date = to_char(sysdate, 'YYYYMMDD.HH24MISS'),
+    up_user_id =:3
+where ticket_no=:4
+2021-04-15 10:16:28,310 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-15 10:16:29,707 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+where ticket_no = :1
+order by ticket_no
+2021-04-15 10:16:31,729 - MyLog - DEBUG - 
+delete
+from ticket
+where ticket_no = :1
+2021-04-15 10:17:12,370 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+where ticket_no = :1
+order by ticket_no
+2021-04-15 10:17:14,925 - MyLog - DEBUG - 
+delete
+from ticket
+where ticket_no = :1
+2021-04-15 10:19:17,539 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 10:19:21,011 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 10:19:33,621 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 10:20:23,312 - MyLog - DEBUG - 
+update users
+set user_nm = :1,
+    user_password = :2,
+    user_telno = :3,
+    user_email = :4,
+    up_date= to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS'),
+    up_user_id = :5
+where user_id =:6
+2021-04-15 10:20:23,477 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 10:21:58,324 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 10:22:44,115 - MyLog - DEBUG - 
+insert into qestn (qestn_no, user_id, title, content, in_date)
+values ((SELECT NVL(MAX(qestn_no)+1,0) FROM qestn), :1, :2, :3, to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS'))
+2021-04-15 10:22:51,927 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 10:23:08,203 - MyLog - DEBUG - 
+insert into bbs (bbs_no, user_id, title, content, attach_file, attach_path, rdcnt, writer, in_date, in_user_id, up_date, up_user_id)
+values (bbs_seq.nextval, :1, :2, :3, :4, :5, 0, :6, to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS'), :7, to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS'), :8)
+2021-04-15 10:23:08,712 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 10:23:17,669 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+where bbs_no = :1
+2021-04-15 10:23:17,686 - MyLog - DEBUG - 
+update bbs
+set rdcnt = rdcnt + 1
+where bbs_no = :1
+2021-04-15 10:23:18,053 - MyLog - DEBUG - 
+select bbs_no,
+       comm_no,
+       user_id,
+       content,
+       likes,
+       dislike,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from comm
+where bbs_no = :1
+order by comm_no
+2021-04-15 10:23:54,325 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+where bbs_no = :1
+2021-04-15 10:23:54,340 - MyLog - DEBUG - 
+update bbs
+set rdcnt = rdcnt + 1
+where bbs_no = :1
+2021-04-15 10:23:54,750 - MyLog - DEBUG - 
+select bbs_no,
+       comm_no,
+       user_id,
+       content,
+       likes,
+       dislike,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from comm
+where bbs_no = :1
+order by comm_no
+2021-04-15 10:23:57,324 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+where bbs_no = :1
+2021-04-15 10:23:57,344 - MyLog - DEBUG - 
+update bbs
+set rdcnt = rdcnt + 1
+where bbs_no = :1
+2021-04-15 10:23:57,676 - MyLog - DEBUG - 
+select bbs_no,
+       comm_no,
+       user_id,
+       content,
+       likes,
+       dislike,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from comm
+where bbs_no = :1
+order by comm_no
+2021-04-15 10:23:58,476 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+where bbs_no = :1
+2021-04-15 10:24:00,207 - MyLog - DEBUG - 
+select bbs_no,
+       comm_no,
+       user_id,
+       content,
+       likes,
+       dislike,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from comm
+where bbs_no = :1
+order by comm_no
+2021-04-15 10:24:04,709 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+where bbs_no = :1
+2021-04-15 10:24:04,726 - MyLog - DEBUG - 
+update bbs
+set rdcnt = rdcnt + 1
+where bbs_no = :1
+2021-04-15 10:24:05,016 - MyLog - DEBUG - 
+select bbs_no,
+       comm_no,
+       user_id,
+       content,
+       likes,
+       dislike,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from comm
+where bbs_no = :1
+order by comm_no
+2021-04-15 10:24:15,172 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+where bbs_no = :1
+2021-04-15 10:24:15,192 - MyLog - DEBUG - 
+update bbs
+set rdcnt = rdcnt + 1
+where bbs_no = :1
+2021-04-15 10:24:15,528 - MyLog - DEBUG - 
+select bbs_no,
+       comm_no,
+       user_id,
+       content,
+       likes,
+       dislike,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from comm
+where bbs_no = :1
+order by comm_no
+2021-04-15 10:24:18,015 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+where bbs_no = :1
+2021-04-15 10:24:28,674 - MyLog - DEBUG - 
+update bbs
+set user_id = :1,
+    title = :2,
+    content = :3,
+    attach_file = :4,
+    attach_path = :5,
+    up_date = to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS')
+where bbs_no = :6
+2021-04-15 10:24:29,057 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 10:24:39,146 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+where bbs_no = :1
+2021-04-15 10:24:39,165 - MyLog - DEBUG - 
+update bbs
+set rdcnt = rdcnt + 1
+where bbs_no = :1
+2021-04-15 10:24:39,613 - MyLog - DEBUG - 
+select bbs_no,
+       comm_no,
+       user_id,
+       content,
+       likes,
+       dislike,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from comm
+where bbs_no = :1
+order by comm_no
+2021-04-15 10:25:04,489 - MyLog - DEBUG - 
+delete
+from comm
+where bbs_no = :1
+2021-04-15 10:25:04,737 - MyLog - DEBUG - 
+delete
+from bbs
+where bbs_no = :1
+2021-04-15 10:25:06,456 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 10:25:09,523 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+where bbs_no = :1
+2021-04-15 10:25:09,546 - MyLog - DEBUG - 
+update bbs
+set rdcnt = rdcnt + 1
+where bbs_no = :1
+2021-04-15 10:25:09,974 - MyLog - DEBUG - 
+select bbs_no,
+       comm_no,
+       user_id,
+       content,
+       likes,
+       dislike,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from comm
+where bbs_no = :1
+order by comm_no
+2021-04-15 10:25:22,802 - MyLog - DEBUG - 
+insert into comm (bbs_no, comm_no, user_id, content, likes, dislike, in_date, in_user_id, up_date, up_user_id)
+values (:1, comm_seq.nextval, :2, :3, 0, 0, to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS'), :4, to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS'), :5)
+2021-04-15 10:25:24,327 - MyLog - DEBUG - 
+select bbs_no,
+       comm_no,
+       user_id,
+       content,
+       likes,
+       dislike,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from comm
+where bbs_no = :1
+order by comm_no
+2021-04-15 10:25:29,120 - MyLog - DEBUG - 
+insert into comm (bbs_no, comm_no, user_id, content, likes, dislike, in_date, in_user_id, up_date, up_user_id)
+values (:1, comm_seq.nextval, :2, :3, 0, 0, to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS'), :4, to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS'), :5)
+2021-04-15 10:25:31,733 - MyLog - DEBUG - 
+select bbs_no,
+       comm_no,
+       user_id,
+       content,
+       likes,
+       dislike,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from comm
+where bbs_no = :1
+order by comm_no
+2021-04-15 10:25:34,161 - MyLog - DEBUG - 
+update comm
+set likes = likes + 1
+where comm_no = :1
+2021-04-15 10:25:34,894 - MyLog - DEBUG - 
+select bbs_no,
+       comm_no,
+       user_id,
+       content,
+       likes,
+       dislike,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from comm
+where bbs_no = :1
+order by comm_no
+2021-04-15 10:25:35,916 - MyLog - DEBUG - 
+update comm
+set likes = likes + 1
+where comm_no = :1
+2021-04-15 10:25:36,392 - MyLog - DEBUG - 
+select bbs_no,
+       comm_no,
+       user_id,
+       content,
+       likes,
+       dislike,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from comm
+where bbs_no = :1
+order by comm_no
+2021-04-15 10:25:37,589 - MyLog - DEBUG - 
+update comm
+set likes = likes + 1
+where comm_no = :1
+2021-04-15 10:25:37,911 - MyLog - DEBUG - 
+select bbs_no,
+       comm_no,
+       user_id,
+       content,
+       likes,
+       dislike,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from comm
+where bbs_no = :1
+order by comm_no
+2021-04-15 10:25:39,059 - MyLog - DEBUG - 
+update comm
+set likes = likes + 1
+where comm_no = :1
+2021-04-15 10:25:39,507 - MyLog - DEBUG - 
+select bbs_no,
+       comm_no,
+       user_id,
+       content,
+       likes,
+       dislike,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from comm
+where bbs_no = :1
+order by comm_no
+2021-04-15 10:26:03,764 - MyLog - DEBUG - 
+update comm
+set dislike = dislike + 1
+where comm_no = :1
+2021-04-15 10:26:04,049 - MyLog - DEBUG - 
+select bbs_no,
+       comm_no,
+       user_id,
+       content,
+       likes,
+       dislike,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from comm
+where bbs_no = :1
+order by comm_no
+2021-04-15 10:26:24,831 - MyLog - DEBUG - 
+delete
+from comm
+where comm_no=:1
+2021-04-15 10:26:25,283 - MyLog - DEBUG - 
+select bbs_no,
+       comm_no,
+       user_id,
+       content,
+       likes,
+       dislike,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from comm
+where bbs_no = :1
+order by comm_no
+2021-04-15 10:26:32,296 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+where bbs_no = :1
+2021-04-15 10:26:32,311 - MyLog - DEBUG - 
+update bbs
+set rdcnt = rdcnt + 1
+where bbs_no = :1
+2021-04-15 10:26:32,697 - MyLog - DEBUG - 
+select bbs_no,
+       comm_no,
+       user_id,
+       content,
+       likes,
+       dislike,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from comm
+where bbs_no = :1
+order by comm_no
+2021-04-15 10:26:34,852 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+where bbs_no = :1
+2021-04-15 10:26:34,866 - MyLog - DEBUG - 
+update bbs
+set rdcnt = rdcnt + 1
+where bbs_no = :1
+2021-04-15 10:26:35,666 - MyLog - DEBUG - 
+select bbs_no,
+       comm_no,
+       user_id,
+       content,
+       likes,
+       dislike,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from comm
+where bbs_no = :1
+order by comm_no
+2021-04-15 10:26:57,002 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+where bbs_no = :1
+2021-04-15 10:26:57,017 - MyLog - DEBUG - 
+update bbs
+set rdcnt = rdcnt + 1
+where bbs_no = :1
+2021-04-15 10:26:57,457 - MyLog - DEBUG - 
+select bbs_no,
+       comm_no,
+       user_id,
+       content,
+       likes,
+       dislike,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from comm
+where bbs_no = :1
+order by comm_no
+2021-04-15 10:27:02,284 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 10:31:27,943 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 10:31:58,387 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 11:00:38,605 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 11:00:45,369 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 11:01:40,630 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 11:04:12,386 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id,
+
+  (select name
+   from ticket p
+   where p.in_user_id = u.user_id) name
+from users u
+2021-04-15 11:29:46,245 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-15 11:29:46,367 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id,
+
+  (select name
+   from ticket p
+   where p.in_user_id = u.user_id) name
+from users u
+order by 8 desc
+2021-04-15 11:34:12,998 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id,
+
+  (select name
+   from ticket p
+   where p.in_user_id = u.user_id) name
+from users u
+order by 8 desc
+2021-04-15 11:34:55,926 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id,
+
+  (select name
+   from ticket p
+   where p.in_user_id = u.user_id) name
+from users u
+order by 8 desc
+2021-04-15 11:35:02,132 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_nm like '%'||:1||'%'
+2021-04-15 11:35:06,714 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_nm like '%'||:1||'%'
+2021-04-15 11:35:10,903 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_nm like '%'||:1||'%'
+2021-04-15 11:36:48,460 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 11:36:52,691 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 11:36:55,837 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 11:50:27,161 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 11:50:34,039 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+where titie like '%'||:1||'%'
+2021-04-15 11:51:33,227 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 11:51:36,248 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+where title like '%'||:1||'%'
+2021-04-15 11:51:40,119 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+where title like '%'||:1||'%'
+2021-04-15 11:51:45,211 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+where title like '%'||:1||'%'
+2021-04-15 11:52:03,554 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+where title like '%'||:1||'%'
+2021-04-15 11:52:29,912 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 11:52:34,811 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 11:52:40,194 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+where title like '%'||:1||'%'
+2021-04-15 12:07:23,731 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 12:09:05,142 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 12:09:22,466 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 12:09:36,154 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 12:10:21,755 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 12:10:23,841 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 12:11:12,317 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 12:15:24,365 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 12:15:30,399 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 12:15:37,058 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id,
+
+  (select name
+   from ticket p
+   where p.in_user_id = u.user_id) name
+from users u
+order by 8 desc
+2021-04-15 12:15:38,678 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_nm like '%'||:1||'%'
+2021-04-15 12:15:45,843 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_nm like '%'||:1||'%'
+2021-04-15 12:15:57,793 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 12:34:31,316 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 12:36:34,605 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 12:40:35,488 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 12:41:00,370 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 12:41:20,587 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id,
+
+  (select name
+   from ticket p
+   where p.in_user_id = u.user_id) name
+from users u
+order by 8 desc
+2021-04-15 12:41:23,358 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_nm like '%'||:1||'%'
+2021-04-15 12:41:26,672 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_nm like '%'||:1||'%'
+2021-04-15 12:41:29,204 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_nm like '%'||:1||'%'
+2021-04-15 12:41:32,059 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id,
+
+  (select name
+   from ticket p
+   where p.in_user_id = u.user_id) name
+from users u
+order by 8 desc
+2021-04-15 12:46:07,377 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id,
+
+  (select name
+   from ticket p
+   where p.in_user_id = u.user_id) name
+from users u
+order by 8 desc
+2021-04-15 12:47:57,745 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-15 12:48:01,718 - MyLog - DEBUG - 
+insert into ticket (ticket_no, name, price, in_date, in_user_id, up_date, up_user_id)
+values (ticket_seq.NEXTVAL, :1, :2, to_char(sysdate, 'YYYYMMDD.HH24MISS'), :3, to_char(sysdate, 'YYYYMMDD.HH24MISS'), :4)
+2021-04-15 12:50:01,752 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-15 12:50:08,897 - MyLog - DEBUG - 
+insert into ticket (ticket_no, name, price, in_date, in_user_id, up_date, up_user_id)
+values (ticket_seq.NEXTVAL, :1, :2, to_char(sysdate, 'YYYYMMDD.HH24MISS'), :3, to_char(sysdate, 'YYYYMMDD.HH24MISS'), :4)
+2021-04-15 12:50:10,364 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-15 12:50:11,977 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+where ticket_no = :1
+order by ticket_no
+2021-04-15 12:50:15,899 - MyLog - DEBUG - 
+update ticket
+set name =:1,
+    price =:2,
+    up_date = to_char(sysdate, 'YYYYMMDD.HH24MISS'),
+    up_user_id =:3
+where ticket_no=:4
+2021-04-15 12:50:17,221 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-15 12:50:18,816 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+where ticket_no = :1
+order by ticket_no
+2021-04-15 12:50:20,867 - MyLog - DEBUG - 
+update ticket
+set name =:1,
+    price =:2,
+    up_date = to_char(sysdate, 'YYYYMMDD.HH24MISS'),
+    up_user_id =:3
+where ticket_no=:4
+2021-04-15 12:50:21,804 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-15 12:50:23,285 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+where ticket_no = :1
+order by ticket_no
+2021-04-15 12:50:25,301 - MyLog - DEBUG - 
+delete
+from ticket
+where ticket_no = :1
+2021-04-15 12:50:26,683 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-15 12:50:33,573 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-15 12:50:55,008 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 12:51:14,006 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 12:51:17,587 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 12:52:29,535 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 12:52:50,783 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:34:04,057 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:34:05,650 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:34:31,839 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:34:33,403 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:34:58,729 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:35:19,510 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:35:23,317 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:36:26,997 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:36:45,576 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 13:36:53,932 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:36:57,556 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:38:05,719 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:38:08,375 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:40:22,241 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:40:25,360 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:44:28,969 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:44:31,075 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:45:03,722 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:45:06,670 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:46:36,387 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:46:38,340 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:49:40,634 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:50:03,513 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:50:07,426 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:52:50,576 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:52:52,208 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:53:43,293 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:54:11,751 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:54:59,118 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:56:05,374 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:56:07,111 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:57:56,221 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:57:57,334 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:59:00,246 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 13:59:01,874 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:01:17,762 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:01:20,095 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:02:09,592 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:02:11,127 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:05:34,410 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:05:35,598 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:05:43,934 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:06:11,167 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:06:12,430 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:06:25,229 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:08:28,749 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:08:29,640 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:11:25,710 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:11:26,911 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:11:56,952 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:12:00,546 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:14:32,080 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:14:33,490 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:14:35,840 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:24:00,233 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:24:01,759 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:25:29,905 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 14:25:33,780 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:25:35,508 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:26:45,032 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:26:47,139 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:27:46,027 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:27:47,345 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:28:26,137 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:28:27,752 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:28:46,516 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:28:47,764 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:30:40,720 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:30:43,093 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:31:24,810 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:31:26,709 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:35:59,530 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:36:45,710 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:36:47,764 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:37:31,212 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:37:33,875 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:38:41,223 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:38:43,583 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:39:24,674 - MyLog - DEBUG - 
+update users
+set user_nm = :1,
+    user_password = :2,
+    user_telno = :3,
+    user_email = :4,
+    up_date= to_char(sysdate, 'YYYY-MM-DD.HH24:MI:SS'),
+    up_user_id = :5
+where user_id =:6
+2021-04-15 14:39:24,752 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:39:37,904 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:39:40,344 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:40:21,716 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:40:29,435 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:41:02,805 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:41:08,643 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 14:41:29,326 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 14:41:41,921 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id,
+
+  (select name
+   from ticket p
+   where p.in_user_id = u.user_id) name
+from users u
+order by 8 desc
+2021-04-15 14:41:45,779 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-15 14:42:34,833 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 14:44:05,554 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:44:40,435 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 14:44:42,719 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-15 14:44:47,630 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+where ticket_no = :1
+order by ticket_no
+2021-04-15 14:44:54,838 - MyLog - DEBUG - 
+update ticket
+set name =:1,
+    price =:2,
+    up_date = to_char(sysdate, 'YYYYMMDD.HH24MISS'),
+    up_user_id =:3
+where ticket_no=:4
+2021-04-15 14:44:56,203 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+2021-04-15 14:45:24,983 - MyLog - DEBUG - 
+update qestn
+set answer = null
+where qestn_no=:1
+2021-04-15 14:45:38,625 - MyLog - DEBUG - 
+update qestn
+set answer=:1,
+    up_date=to_char(sysdate, 'YYYYMMDD.HH24MISS'),
+    up_user_id=:2
+where qestn_no=:3
+2021-04-15 14:46:24,639 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 14:46:29,962 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 14:46:48,696 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 14:46:53,818 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 14:47:12,176 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 14:48:24,504 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 14:49:47,210 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 14:49:52,795 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 14:50:03,647 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs
+2021-04-15 15:04:23,919 - MyLog - DEBUG - 
+SELECT user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id=:1
+  and user_password=:2
+2021-04-15 15:54:59,621 - MyLog - DEBUG - 
+SELECT ticket_no,
+       name,
+       price,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from ticket
+>>>>>>> .r2343
+2021-04-15 19:49:00,430 - MyLog - DEBUG - 
+select user_id,
+       user_nm,
+       user_password,
+       user_telno,
+       user_email,
+       mngr_flag,
+       act_flag,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from users
+where user_id = :1
+2021-04-15 19:49:06,921 - MyLog - DEBUG - 
+select bbs_no,
+       user_id,
+       title,
+       content,
+       attach_file,
+       attach_path,
+       rdcnt,
+       writer,
+       in_date,
+       in_user_id,
+       up_date,
+       up_user_id
+from bbs

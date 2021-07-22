@@ -1,0 +1,280 @@
+<!DOCTYPE HTML>
+<!--
+   Editorial by HTML5 UP
+   html5up.net | @ajlkn
+   Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+    <style>
+   #add {
+      float : right;
+   }
+   pre {
+      color : black;
+   }
+   .btn{
+      width:160px;
+       float: right;
+       margin-left: 2%;
+   }    
+   dd{
+      float: right;
+   }
+   #myTable td,th{
+      vertical-align: middle;
+      text-align: center;
+   }
+   .table_title{
+      padding: 1%;
+   }
+   #header a{
+
+      font-weight: bold;
+   }
+   #myTable th{
+      background-color: rgba(230, 235, 237, 0.25);
+   }
+   #myTable th,td{
+      text-align: center;
+   }
+   #tr_hover:hover{
+      background-color : #F2F2F2;
+      
+   }
+   		#r{
+		width:50%;
+		text-align: right;
+		float:right;
+		padding-top: 1%;
+		}
+		#a{
+		font-size: 20px;
+		width : 49%;
+		float:left;
+		font-weight: bold;
+		color : #3d4449;
+	}
+   
+   #myTable_length{
+      display: none;
+   }
+   #myTable_filter{
+      display: none;
+   }
+   #myTable_info{
+      display: none;
+   }
+   #myTable_previous{
+      padding-right: 2%;
+   }
+   #myTable_next{
+      padding-left: 2%;
+   }
+   span a{
+      margin: 2%;
+   }
+   #myTable_paginate{
+      text-align: center;
+   }
+   tr{
+         vertical-align : middle;
+   }
+  
+      
+   </style>
+   <script src="assets/js/jquery.min.js"></script>
+   <script type="text/javascript"  src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+   <script type="text/javascript"  src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+   
+   <script>
+   	function fn_logout(){
+			var flag_ok = confirm("로그아웃 하시겠습니까?");
+			if(flag_ok == true){
+				location.href="logout";
+			}	
+		}
+		
+		function fn_mypage(){
+			location.href="mypage"
+		}
+      function fn_add(){
+         location.href = "comm_add"
+      }
+   
+      function fn_search(){
+         var search = $('input[name=comm_title_search]').val()
+         location.href="comm?comm_title_search="+search;
+      }
+      
+      function fn_detail(comm_seq){
+         location.href="comm_detail?comm_seq="+comm_seq;
+      }
+      
+      function fn_back(){
+    	  location.href="comm"
+      }
+      
+      $(document).ready(function(){
+          $('#myTable').dataTable({
+         	  "ordering": false,
+         	  "language": {
+         	      "emptyTable": "글이 존재하지 않습니다"
+         	    }
+         	  
+          });
+       });
+   
+   </script>
+   <head>
+      <title>나도시락 : 나도주문!</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+      <link rel="stylesheet" href="assets/css/main.css" />
+   </head>
+   <body class="is-preload">
+
+      <!-- Wrapper -->
+         <div id="wrapper">
+
+            <!-- Main -->
+               <div id="main">
+                  <div class="inner">
+
+                     <!-- Header -->
+                        <header id="header">
+                           <div id="a">커뮤니티</div>
+									<div id="r">
+										{% if session.user_id == '1' %}
+										<a class="home_select">{{session.user_name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+										<a href="javascript:fn_logout()" class="home_select">로그아웃</a>
+										
+										{% elif session.user_id%}
+										
+										{% if session.user_gubun == 'b' %}
+										<a class="home_select">{{session.user_name}}님[반장]</a>
+										{% else %}
+										<a class="home_select">{{session.user_name}}님[학생]</a>
+										{% endif %}
+										
+										
+										<a href="javascript:fn_mypage()" class="select_main">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;마이페이지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+										<a href="javascript:fn_logout()" class="home_select">로그아웃</a>
+										
+										
+										{% else %}
+										<a href="login.html" class="select_main" >로그인&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
+										<a href="register.html" class="select_main">회원가입</a>
+										{% endif %}
+										
+									</div>
+                        </header>   
+                        <br>                        
+                        <dl>
+                       </dl>
+                       <br>
+                  <table id="myTable">
+                     <thead>
+                        <tr>
+                           <th class="table_title">글번호</th>
+                           <th class="table_title">이미지</th>
+                           <th class="table_title">제목</th>
+                           <th class="table_title">작성자</th>
+                           <th class="table_title">좋아요</th>
+                           <th class="table_title">댓글수</th>
+                           <th class="table_title">조회수</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                           {% for i in list %}
+                              {% if i.del_flag == 'n' %}
+                        <tr id="tr_hover">
+                           <td style = "column-count: inherit; ">{{i.comm_seq}}</td>
+                           <td>
+                              {% if i.attach_file %}
+                              <a href="download?attach_file={{i.attach_file}}&attach_path={{i.attach_path}}"></a>
+                              <a href="javascript:fn_detail('{{i.comm_seq}}')"><img src="download?attach_file={{i.attach_file}}&attach_path={{i.attach_path}}" width="100px" ></a>
+                              {% else %}
+                              <a href="javascript:fn_detail('{{i.comm_seq}}')"><img src="images/default.png" width="100px"></a>
+                              {% endif %}
+                           </td>
+                           <td style="font-weight: 900;">
+                              <a href="javascript:fn_detail('{{i.comm_seq}}')">{{i.comm_title}}</a>
+                           </td>
+                           <td>{{i.in_user_id}}</td>
+                           <td>{{i.good_cnt}}</td>
+                           <td>{{i.cnt}}</td>
+                           <td>{{i.comm_hit}}</td>
+                        </tr>
+                              {% endif %}
+                           {% endfor %}
+                     </tbody>
+                     </table>
+                     <!-- Section -->
+               <div class="top" id="add"><input type="button" class="btn" value="뒤로가기" onclick="fn_back()"/></div>
+                     <!-- Section -->
+                  </div>
+               </div>
+
+            <!-- Sidebar -->
+               <div id="sidebar">
+                  <div class="inner">
+
+                     <!-- Search -->
+                        <section id="search" class="alt">
+                           <form method="post" action="#">
+                              <input type="text" name="query" id="query" placeholder="Search" />
+                           </form>
+                        </section>
+
+                     <!-- Menu -->
+                        <nav id="menu">
+                           <header class="major">
+                              <h2>메뉴</h2>
+                           </header>
+                           <ul>
+										<li><a href="home">HOME</a></li>
+										{% if session.user_id == '1' %}
+										<li><a href="today_order">주문현황</a></li>
+										<li><a href="admin_order_list">총주문조회</a></li>
+										<li><a href="user_list">학생조회</a></li>
+										<li><a href="comm">커뮤니티</a></li>
+										<li><a href="qna">QnA</a></li>
+										<li><a href="store_list">업체관리</a></li>
+										<li><a href="room_list">호실관리</a></li>
+										{% endif %}
+										{% if session.user_id != '1' %}
+										<li><a href="order">주문하기</a></li>
+										<li><a href="today_order">주문현황</a></li>
+										<li><a href="myorder_list">내주문조회</a></li>
+										<li><a href="user_list">학생조회</a></li>
+										<li><a href="comm">커뮤니티</a></li>
+										<li><a href="qna">QnA</a></li>
+										{% endif %}
+
+
+                           </ul>
+                        </nav>
+
+                     <!-- Section -->
+
+                     <!-- Section -->
+
+                     <!-- Footer -->
+                        <footer id="footer">
+                           <p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+                        </footer>
+
+                  </div>
+               </div>
+
+         </div>
+
+      <!-- Scripts -->
+         
+         <script src="assets/js/browser.min.js"></script>
+         <script src="assets/js/breakpoints.min.js"></script>
+         <script src="assets/js/util.js"></script>
+         <script src="assets/js/main.js"></script>
+
+   </body>
+</html>

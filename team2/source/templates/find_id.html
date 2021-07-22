@@ -1,0 +1,211 @@
+<!DOCTYPE HTML>
+<!--
+	Editorial by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>나도시락 : 나도주문!</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<style>
+		dl{
+			margin-top: 5%;
+			margin-bottom: 5%;
+			width: 300px;
+			margin-left: 35%;
+		}
+		
+		dd{
+		
+			margin-top:5%; 
+			margin-bottom:5%; 
+			text-align: center;
+		}		
+		
+		#search_btn{
+			width: 100%;
+		
+		}
+		#r{
+			width:50%;
+			text-align: right;
+			float:right;
+			padding-top: 1%;
+		}
+		#a{
+			font-size: 20px;
+			width : 49%;
+			float:left;
+			font-weight: bold;
+			color : #3d4449;
+		}
+		#header a{
+			font-weight: bold;
+		}
+		#r1{
+			padding-top: 1%;
+		}
+	</style>
+	<script type="text/javascript">
+	function fn_logout(){
+		var flag_ok = confirm("로그아웃 하시겠습니까?");
+		if(flag_ok == true){
+			location.href="logout";
+		}	
+	}
+		
+	function fn_mypage(){
+		location.href="mypage"
+	}
+	function fn_send(){
+		var user_name 	= $("#user_name").val();
+		var user_email  = $("#user_email").val();
+		
+		
+		var param = "";
+		param += "dummy=" + Math.random();
+		param += "&user_name="+user_name;
+		param += "&user_email="+user_email;
+
+		$.ajax({
+			url : "find_id.ajax",
+			data : param,
+			dataType : "json",
+			type : "post",
+			async: false,
+			success : function(data) {
+				if(data.msg =="ok"){
+					alert("아이디 정보를 이메일로 발송하였습니다.");
+				}else{
+					alert("이름 혹은 이메일 정보가 맞지 않습니다.");
+					$("#user_name").focus();
+				}
+			}
+		});
+		
+		location.href="home"
+	}
+	
+	</script>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper">
+
+				<!-- Main -->
+					<div id="main">
+						<div class="inner">
+
+							<!-- Header -->
+								<header id="header">
+									<div id="a">아이디 찾기</div>
+									<div id="r">
+										{% if session.user_id == '1' %}
+										<a class="home_select">{{session.user_name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+										<a href="javascript:fn_logout()" class="home_select">로그아웃</a>
+										
+										{% elif session.user_id%}
+										
+										{% if session.user_gubun == 'b' %}
+										<a class="home_select">{{session.user_name}}님[반장]</a>
+										{% else %}
+										<a class="home_select">{{session.user_name}}님[학생]</a>
+										{% endif %}
+										
+										
+										<a href="javascript:fn_mypage()" class="select_main">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;마이페이지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+										<a href="javascript:fn_logout()" class="home_select">로그아웃</a>
+										
+										
+										{% else %}
+										<a href="login.html" class="select_main" >로그인&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
+										<a href="register.html" class="select_main">회원가입</a>
+										{% endif %}
+										
+									</div>
+								</header>
+
+							<!-- Banner -->
+							<!-- Section -->
+								<dl>
+									
+									<dd><input type="text"  id="user_name" placeholder="이름" /></dd>
+									<dd><input type="text"  id="user_email" placeholder="이메일" /></dd>
+									<dd><input type="button" id="search_btn" value="찾기" onclick="fn_send()"></dd>
+									
+								</dl>
+								
+							<!-- 찾기 눌러서 이메일로 아이디 발송 -->
+							<!-- Section -->
+							
+
+						</div>
+					</div>
+
+				<!-- Sidebar -->
+					<div id="sidebar">
+						<div class="inner">
+
+							<!-- Search -->
+								<section id="search" class="alt">
+									<form method="post" action="#">
+										<input type="text" name="query" id="query" placeholder="Search" />
+									</form>
+								</section>
+
+							<!-- Menu -->
+								<nav id="menu">
+									<header class="major">
+										<h2>메뉴</h2>
+									</header>
+									<ul>
+										<li><a href="home">HOME</a></li>
+										{% if session.user_id == '1' %}
+										<li><a href="today_order">주문현황</a></li>
+										<li><a href="admin_order_list">총주문조회</a></li>
+										<li><a href="user_list">학생조회</a></li>
+										<li><a href="comm">커뮤니티</a></li>
+										<li><a href="qna">QnA</a></li>
+										<li><a href="store_list">업체관리</a></li>
+										<li><a href="room_list">호실관리</a></li>
+										{% endif %}
+										{% if session.user_id != '1' %}
+										<li><a href="order">주문하기</a></li>
+										<li><a href="today_order">주문현황</a></li>
+										<li><a href="myorder_list">내주문조회</a></li>
+										<li><a href="user_list">학생조회</a></li>
+										<li><a href="comm">커뮤니티</a></li>
+										<li><a href="qna">QnA</a></li>
+										{% endif %}
+
+
+									</ul>
+								</nav>
+
+							<!-- Section -->
+
+							<!-- Section -->
+
+							<!-- Footer -->
+								<footer id="footer">
+									<p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+								</footer>
+
+						</div>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>

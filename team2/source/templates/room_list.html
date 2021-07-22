@@ -1,0 +1,379 @@
+<!DOCTYPE HTML>
+<!--
+   Editorial by HTML5 UP
+   html5up.net | @ajlkn
+   Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+   <head>
+      <title>나도시락 : 나도주문!</title>
+      <meta charset="utf-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+      <link rel="stylesheet" href="assets/css/main.css" />
+   </head>
+   <script src="assets/js/jquery.min.js"></script>
+   <script type="text/javascript"  src="http://cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript"  src="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+   
+   <script type="text/javascript">
+   var list_cnt = ""
+      
+   function fn_cnt(cnt){
+      list_cnt = cnt
+   }
+   
+   $(document).ready(function(){
+      $('input[type=radio]').change(function() {
+         if(list_cnt != 0){
+               alert("교실 인원을 확인해주세요")
+               location.reload();
+            } else {
+           var flag_ok = confirm("상태를 바꾸시겠습니까?");
+               if(flag_ok){
+                var name = $(this).attr('name');
+                var del_flag = $('input[name='+name+']:checked').val();
+                var room = $('input[id='+name+']').val();
+                
+                
+                var room_seq = room;
+                var del_flag = del_flag;
+                
+                  var param = "";
+                  param += "dummy=" + Math.random();
+                  param += "&room_seq=" + room_seq
+                  param += "&del_flag=" + del_flag
+                  
+                  console.log(param)
+
+                  $.ajax({
+                     url : "room_upd.ajax",
+                     data : param,
+                     dataType : "json",
+                     type : "post",
+                     async : false,
+                     statusCode : {
+                        404 : function() {
+                           alert("네트워크가 불안정합니다. 다시 시도부탁드립니다.");
+                        }
+                     },
+                     success : function(data) {
+                        if(data.msg == "ok"){
+                           alert("호실상태가 변경되었습니다.")
+                           location.reload();
+                        } else{
+                           alert("추가 도중 문제가 생겼습니다")
+                        }
+                        console.log(data.msg)
+                     }
+                  });
+                  
+                  } 
+              
+           
+            }
+           
+
+       })
+      
+   });
+   
+   function fn_add(){
+      var user_input = prompt('추가할 호수를 입력해주세요', 'ex. 401');
+      
+      if(!user_input) {
+           alert("다시 입력해주세요");
+           return;
+       } else {
+          var flag_ok = confirm(user_input+"호를 추가하시겠습니까?");
+          if(flag_ok){
+             var room_seq = user_input;
+            
+              var param = "";
+              param += "dummy=" + Math.random();
+              param += "&room_seq=" + room_seq
+              console.log(param)
+
+              $.ajax({
+                 url : "room_add.ajax",
+                 data : param,
+                 dataType : "json",
+                 type : "post",
+                 async : false,
+                 statusCode : {
+                    404 : function() {
+                       alert("네트워크가 불안정합니다. 다시 시도부탁드립니다.");
+                    }
+                 },
+                 success : function(data) {
+                    if(data.msg == "ok"){
+                       alert(user_input+"호가 추가되었습니다.");   
+                       location.reload();
+                    } else{
+                       alert("이미 존재하는 호실입니다")
+                    }
+                    console.log(data.msg)
+                 }
+              });
+             
+            
+          }
+       }
+      
+      
+   }
+   
+   
+   function fn_del(){
+      location.href="room_del"
+   
+   }
+   
+   $(document).ready(function(){
+        $('#myTable').dataTable({
+            "ordering": false,
+            "language": {
+                "emptyTable": "호실이 존재하지 않습니다"
+              }
+            
+        });
+     });
+
+      function fn_logout(){
+         var flag_ok = confirm("로그아웃 하시겠습니까?");
+         if(flag_ok == true){
+            location.href="logout";
+         }   
+      }
+         
+      function fn_mypage(){
+         location.href="mypage"
+      }
+
+   
+   </script>
+   
+   <style>
+    .btn{
+			width:160px;
+			float: right;
+			margin-left: 2%;
+		}
+      table th{
+      background-color: rgba(230, 235, 237, 0.25);
+     }
+   #header a{
+      font-weight: bold;
+   }
+   
+   #r{
+      width:50%;
+      text-align: right;
+      float:right;
+      padding-top: 1%;
+   }
+   #a{
+      font-size: 20px;
+      width : 49%;
+      float:left;
+      font-weight: bold;
+      color : #3d4449;
+   }
+     table th,td{
+         text-align: center;
+     }
+     .table_title{
+         padding: 1%;
+      }
+     td,th{
+       vertical-align: middle;
+       text-align: center;
+      }
+      .add_btn{
+        width:160px;
+        float : right;
+      
+      }
+      #myTable_length{
+         display: none;
+      }
+      #myTable_filter{
+         display: none;
+      }
+      #myTable_info{
+         display: none;
+      }
+      #myTable_previous{
+         padding-right: 2%;
+      }
+      #myTable_next{
+         padding-left: 2%;
+      }
+      span a{
+         margin: 2%;
+      }
+      #myTable_paginate{
+      
+         text-align: center;
+      }
+     
+     
+   
+   </style>
+   
+   <body class="is-preload">
+      <!-- Wrapper -->
+         <div id="wrapper">
+
+            <!-- Main -->
+               <div id="main">
+                  <div class="inner">
+
+                     <!-- Header -->
+                        <header id="header">
+                           <div id="a">호실관리</div>
+                           <div id="r">
+                              {% if session.user_id == '1' %}
+                              <a class="home_select">{{session.user_name}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                              <a href="javascript:fn_logout()" class="home_select">로그아웃</a>
+                              
+                              {% elif session.user_id%}
+                              
+                              {% if session.user_gubun == 'b' %}
+                              <a class="home_select">{{session.user_name}}님[반장]</a>
+                              {% else %}
+                              <a class="home_select">{{session.user_name}}님[학생]</a>
+                              {% endif %}
+                              
+                              
+                              <a href="javascript:fn_mypage()" class="select_main">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;마이페이지&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
+                              <a href="javascript:fn_logout()" class="home_select">로그아웃</a>
+                              
+                              
+                              {% else %}
+                              <a href="login.html" class="select_main" >로그인&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a> 
+                              <a href="register.html" class="select_main">회원가입</a>
+                              {% endif %}
+                              
+                           </div>                        
+                        </header>
+
+                     <!-- Banner -->
+                        <br>
+                        <table id="myTable">
+                          <thead>
+                           <tr>
+                              <th class="table_title">호수</th>
+                              <th class="table_title">인원</th>
+                              <th class="table_title">활성화여부</th>
+                           </tr>
+                          </thead>
+                           
+                          <tbody>
+                           {% for i,s in enumerate(list)%}
+                           <tr>
+                           
+                              <td id="{{i}}">{{s.room_seq}}</td>
+                              <td>{{s.cnt}}</td>
+                              <td>
+<!--                               {% if s.del_flag == 'y' %}
+                                 <input type="hidden" id = "chk_info{{i}}" value = "{{s.room_seq}}"/>
+                                 <input type="radio" name="chk_info{{i}}" value="y" />활성화&nbsp;&nbsp;&nbsp;
+                                 <input type="radio" name="chk_info{{i}}" value="n" checked/>비활성화
+                              {% else  %}
+                                 <input type="hidden" id = "chk_info{{i}}" value = "{{s.room_seq}}"/>
+                                 <input type="radio" name="chk_info{{i}}" value="y" checked/>활성화&nbsp;&nbsp;&nbsp;
+                                 <input type="radio" name="chk_info{{i}}" value="n" />비활성화
+                              {% endif %} -->
+                              
+                              
+                      {% if ((s.del_flag == 'n')  or (s.cnt != 0 )) :   %}
+                                 <input type="hidden" id = "chk_info{{i}}" value = "{{s.room_seq}}"/>
+                                 <input type="radio" name="chk_info{{i}}" value="y" checked/>활성화&nbsp;&nbsp;&nbsp;
+                                 <input type="radio" onclick="javascript:fn_cnt('{{s.cnt}}')" name="chk_info{{i}}" value="n"/>비활성화
+                              {% else %}
+                                 <input type="hidden" id = "chk_info{{i}}" value = "{{s.room_seq}}"/>
+                                 <input type="radio" name="chk_info{{i}}" value="y" />활성화&nbsp;&nbsp;&nbsp;
+                                 <input type="radio" onclick="javascript:fn_cnt('{{s.cnt}}')" name="chk_info{{i}}" value="n" checked/>비활성화
+                              {% endif %}
+                              
+                              
+                              </td>
+                           </tr>
+                           
+                           {% endfor %}
+                           
+                          </tbody>
+                           
+                        </table>
+                        <input class="btn" type="button" onclick="fn_del()" value="삭제" />
+                        <input class="btn" type="button" onclick="fn_add()" value="추가" />
+                        
+                     <!-- Section -->
+
+                     <!-- Section -->
+                     
+
+                  </div>
+               </div>
+
+            <!-- Sidebar 주석-->
+               <div id="sidebar">
+                  <div class="inner">
+
+                     <!-- Search -->
+                        <section id="search" class="alt">
+                           <form method="post" action="#">
+                              <input type="text" name="query" id="query" placeholder="Search" />
+                           </form>
+                        </section>
+
+                     <!-- Menu -->
+                        <nav id="menu">
+                           <header class="major">
+                              <h2>메뉴</h2>
+                           </header>
+                           <ul>
+                              <li><a href="home">HOME</a></li>
+                              {% if session.user_id == '1' %}
+                              <li><a href="today_order">주문현황</a></li>
+                              <li><a href="admin_order_list">총주문조회</a></li>
+                              <li><a href="user_list">학생조회</a></li>
+                              <li><a href="comm">커뮤니티</a></li>
+                              <li><a href="qna">QnA</a></li>
+                              <li><a href="store_list">업체관리</a></li>
+                              <li><a href="room_list">호실관리</a></li>
+                              {% endif %}
+                              {% if session.user_id != '1' %}
+                              <li><a href="order">주문하기</a></li>
+                              <li><a href="today_order">주문현황</a></li>
+                              <li><a href="myorder_list">내주문조회</a></li>
+                              <li><a href="user_list">학생조회</a></li>
+                              <li><a href="comm">커뮤니티</a></li>
+                              <li><a href="qna">QnA</a></li>
+                              {% endif %}
+                           </ul>
+                        </nav>
+
+                     <!-- Section -->
+
+                     <!-- Section -->
+
+                     <!-- Footer -->
+                        <footer id="footer">
+                           <p class="copyright">&copy; Untitled. All rights reserved. Demo Images: <a href="https://unsplash.com">Unsplash</a>. Design: <a href="https://html5up.net">HTML5 UP</a>.</p>
+                        </footer>
+
+                  </div>
+               </div>
+
+         </div>
+
+      <!-- Scripts -->
+         <!--<script src="assets/js/jquery.min.js"></script>-->
+         <script src="assets/js/browser.min.js"></script>
+         <script src="assets/js/breakpoints.min.js"></script>
+         <script src="assets/js/util.js"></script>
+         <script src="assets/js/main.js"></script>
+
+   </body>
+</html>
